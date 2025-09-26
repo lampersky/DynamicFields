@@ -1,0 +1,792 @@
+{
+  "name": "DynamicFieldsExamples",
+  "displayName": "Add a few examples of dynamic fields",
+  "description": "Adds an example content type demonstrating the capabilities of dynamic fields.",
+  "author": "Lampersky",
+  "website": "https://orchardcore.net",
+  "version": "1.0.0",
+  "issetuprecipe": false,
+  "categories": [ "default" ],
+  "tags": [ "dynamic-fields", "custom-editors" ],
+  "steps": [
+    {
+      "name": "feature",
+      "enable": [
+        "OrchardCore.DynamicFields"
+      ]
+    },
+    {
+      "name": "ContentDefinition",
+      "ContentTypes": [
+        {
+          "Name": "DynamicFieldsExamples",
+          "DisplayName": "DynamicFieldsExamples",
+          "Settings": {
+            "ContentTypeSettings": {
+              "Creatable": true,
+              "Listable": true,
+              "Draftable": false,
+              "Versionable": false,
+              "Securable": false
+            },
+            "FullTextAspectSettings": {
+              "IncludeFullTextTemplate": false,
+              "IncludeBodyAspect": false,
+              "IncludeDisplayText": false
+            },
+            "GraphQLContentTypeSettings": {
+              "Hidden": false
+            }
+          },
+          "ContentTypePartDefinitionRecords": [
+            {
+              "PartName": "DynamicFieldsExamples",
+              "Name": "DynamicFieldsExamples",
+              "Settings": {
+                "ContentTypePartSettings": {
+                  "Position": "0"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "ContentParts": [
+        {
+          "Name": "DynamicFieldsExamples",
+          "Settings": {},
+          "ContentPartFieldDefinitionRecords": [
+            {
+              "FieldName": "DynamicField",
+              "Name": "Leafletjs",
+              "Settings": {
+                "ContentPartFieldSettings": {
+                  "DisplayName": "Leafletjs",
+                  "Position": "0"
+                },
+                "DynamicFieldSettings": {
+                  "ContentType": "DynamicFieldsExamples",
+                  "ContentField": "Leafletjs",
+                  "IndexRawValue": false,
+                  "Code": "\u003Cdiv class=\u0022map\u0022\u003E\u003C/div\u003E",
+                  "Resources": [
+                    {
+                      "At": 2,
+                      "Hash": "34B3C0E131EBA2D5AC12AF029F6A724DE6183C3089D7AF6396EFE69590079EDA",
+                      "IsInline": false,
+                      "Src": "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css",
+                      "Type": 1
+                    },
+                    {
+                      "At": 2,
+                      "Hash": "5D00F470F48714D1000BDF932AE38681BD7C383BA9A3E86C2838741D49100F64",
+                      "IsInline": false,
+                      "Src": "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js",
+                      "Type": 0,
+                      "IsAsync": false,
+                      "IsDeferred": false,
+                      "ScriptType": ""
+                    },
+                    {
+                      "At": 1,
+                      "Hash": "D9D1EC6DFD6D169F21DF8DF4FC43544C3FA541CCAD806AB002A743B2589D85E1",
+                      "IsInline": true,
+                      "Src": "(function () {\r\n    const {\r\n        getValue, \r\n        setValue, \r\n        addEventListener, \r\n        querySelector\r\n    } = window.dynamicFields.DynamicFieldsExamples_Leafletjs_Value;\r\n    \r\n    const mapContainer = querySelector(\u0027.map\u0027);\r\n    const map = L.map(mapContainer).setView([51.505, -0.09], 13);\r\n    const tiles = L.tileLayer(\u0027https://tile.openstreetmap.org/{z}/{x}/{y}.png\u0027, {\r\n        maxZoom: 19,\r\n        attribution: \u0027\u0026copy; \u003Ca href=\u0022http://www.openstreetmap.org/copyright\u0022\u003EOpenStreetMap\u003C/a\u003E\u0027\r\n    }).addTo(map);\r\n    const marker = L.marker([51.505, -0.09], { draggable: true }).addTo(map);\r\n    marker.on(\u0027dragend\u0027, function (e) {\r\n        //var savedBounds = map.getBounds();\r\n        const position = marker.getLatLng();\r\n        const savedCenter = map.getCenter();\r\n        const savedZoom = map.getZoom();\r\n        const object = {\r\n            //bounds: savedBounds,\r\n            position: position,\r\n            center: savedCenter,\r\n            zoom: savedZoom,\r\n        };\r\n        setValue(object);\r\n    });\r\n    addEventListener(\u0027value\u0027, (object) =\u003E {\r\n        if (object?.position \u0026\u0026 object?.center \u0026\u0026 object.zoom) {\r\n            const position = object.position;\r\n            const savedCenter = object.center;\r\n            const savedZoom = object.zoom;\r\n            map.setView(savedCenter, savedZoom);\r\n            marker.setLatLng(position );\r\n            //const bounds = object.bounds;\r\n            //map.fitBounds(bounds);\r\n        }\r\n    }, {init: true});\r\n})();",
+                      "Type": 0,
+                      "IsAsync": false,
+                      "IsDeferred": false,
+                      "ScriptType": ""
+                    },
+                    {
+                      "At": 1,
+                      "Hash": "F762A8E8B8A238D526FFE9103B9E3B732C87C5F98A2344A4E09219641CB7A4EF",
+                      "IsInline": true,
+                      "Src": "#DynamicFieldsExamples_Leafletjs_Value .map { height: 360px; }",
+                      "Type": 1
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "FieldName": "DynamicField",
+              "Name": "ColorPicker",
+              "Settings": {
+                "ContentPartFieldSettings": {
+                  "DisplayName": "ColorPicker",
+                  "Position": "9"
+                },
+                "DynamicFieldSettings": {
+                  "ContentType": "DynamicFieldsExamples",
+                  "ContentField": "ColorPicker",
+                  "IndexRawValue": true,
+                  "Code": "\u003Chex-color-picker\u003E\u003C/hex-color-picker\u003E",
+                  "Resources": [
+                    {
+                      "At": 1,
+                      "Hash": "EB5A505505F8BF26387F9FCD02BDE31A5E3F2A15FC4B05E1DF4DCA97A5D9B15B",
+                      "IsInline": false,
+                      "Src": "https://unpkg.com/vanilla-colorful?module",
+                      "Type": 0,
+                      "IsAsync": false,
+                      "IsDeferred": false,
+                      "ScriptType": "module"
+                    },
+                    {
+                      "At": 1,
+                      "Hash": "0D59E716BCE6B9590B125624393B570C1AA1A81895F1668DF5F604F99B815942",
+                      "IsInline": true,
+                      "Src": "(function () {\r\n    const {\r\n        getValue, \r\n        setValue, \r\n        addEventListener, \r\n        querySelector\r\n    } = window.dynamicFields.DynamicFieldsExamples_ColorPicker_Value;\r\n    \r\n    const picker = querySelector(\u0027hex-color-picker\u0027);\r\n    \r\n    picker.addEventListener(\u0027color-changed\u0027, (event) =\u003E {\r\n      const newColor = event.detail.value;\r\n      const object = {\r\n        color: newColor\r\n      };\r\n      setValue(object);\r\n    });\r\n    \r\n    addEventListener(\u0027value\u0027, (object) =\u003E {\r\n        const color = object?.color;\r\n        picker.color = color;\r\n        picker.setAttribute(\u0027color\u0027, color);\r\n    }, {init: true});\r\n})();",
+                      "Type": 0,
+                      "IsAsync": false,
+                      "IsDeferred": false,
+                      "ScriptType": ""
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "FieldName": "DynamicField",
+              "Name": "SimplePaint",
+              "Settings": {
+                "ContentPartFieldSettings": {
+                  "DisplayName": "SimplePaint",
+                  "Position": "10"
+                },
+                "DynamicFieldSettings": {
+                  "ContentType": "DynamicFieldsExamples",
+                  "ContentField": "SimplePaint",
+                  "IndexRawValue": true,
+                  "Code": "\u003Cpaint-component\u003E\u003C/paint-component\u003E",
+                  "Resources": [
+                    {
+                      "At": 2,
+                      "Hash": "0DB9AD438BB7B4FC469D5AEB8D66D01FDF729960D9EBECE02CC1484411746C6C",
+                      "IsInline": false,
+                      "Src": "https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.0/fabric.min.js",
+                      "Type": 0,
+                      "IsAsync": false,
+                      "IsDeferred": false,
+                      "ScriptType": ""
+                    },
+                    {
+                      "At": 1,
+                      "Hash": "45AEBC81242A5826B9F0650E054091AA60E468F76EA513174DD6A2F3545B81E4",
+                      "IsInline": false,
+                      "Src": "https://lampersky.github.io/DynamicFields/js/paint-component.min.js",
+                      "Type": 0,
+                      "IsAsync": false,
+                      "IsDeferred": false,
+                      "ScriptType": ""
+                    },
+                    {
+                      "At": 1,
+                      "Hash": "532723E6FBA0A9ED2A4074B03D432D4EADD575C35E31539DD698DF9FAF765AD9",
+                      "IsInline": true,
+                      "Src": "(function () {\r\n    const {\r\n        getValue, \r\n        setValue, \r\n        addEventListener, \r\n        querySelector\r\n    } = window.dynamicFields.DynamicFieldsExamples_SimplePaint_Value;\r\n\r\n    const paint = querySelector(\u0027paint-component\u0027);\r\n    paint.onChange = function(object) {\r\n        setValue(object);\r\n    };\r\n\r\n    addEventListener(\u0027value\u0027, (object) =\u003E {\r\n        if (object?.json) {\r\n            paint.loadFromJson(object?.json);\r\n        }\r\n    }, {init: true});\r\n})();",
+                      "Type": 0,
+                      "IsAsync": false,
+                      "IsDeferred": false,
+                      "ScriptType": ""
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "FieldName": "DynamicField",
+              "Name": "GeoCoordinates",
+              "Settings": {
+                "ContentPartFieldSettings": {
+                  "DisplayName": "GeoCoordinates",
+                  "Position": "11"
+                },
+                "DynamicFieldSettings": {
+                  "ContentType": "DynamicFieldsExamples",
+                  "ContentField": "GeoCoordinates",
+                  "IndexRawValue": true,
+                  "Code": "\u003Cgeo-coordinates\u003E\u003C/geo-coordinates\u003E",
+                  "Resources": [
+                    {
+                      "At": 1,
+                      "Hash": "CBC8D5CBD958F12E88A2918167DA02CACE4FE77358F2E9A76973B1D810C4ECCF",
+                      "IsInline": false,
+                      "Src": "https://lampersky.github.io/DynamicFields/js/geo-coordinates.min.js",
+                      "Type": 0,
+                      "IsAsync": false,
+                      "IsDeferred": false,
+                      "ScriptType": ""
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "FieldName": "DynamicField",
+              "Name": "SimpleImageGallery",
+              "Settings": {
+                "ContentPartFieldSettings": {
+                  "DisplayName": "SimpleImageGallery",
+                  "Position": "12"
+                },
+                "DynamicFieldSettings": {
+                  "ContentType": "DynamicFieldsExamples",
+                  "ContentField": "SimpleImageGallery",
+                  "IndexRawValue": true,
+                  "Code": "\u003Csimple-image-gallery\u003E\u003C/simple-image-gallery\u003E",
+                  "Resources": [
+                    {
+                      "At": 2,
+                      "Hash": "1BB11E9DB170D7509AE7C900E5B6219D5A03D58C1CD192F9E3E12C9BDC375CB0",
+                      "IsInline": false,
+                      "Src": "https://lampersky.github.io/DynamicFields/js/simple-image-gallery.min.js",
+                      "Type": 0,
+                      "IsAsync": false,
+                      "IsDeferred": false,
+                      "ScriptType": ""
+                    },
+                    {
+                      "At": 1,
+                      "Hash": "C7B5BE31C28EEAC9D0FDA8D4FD6A7B6B1228FFD2AE79D4CFA266AE8CF804CC8B",
+                      "IsInline": true,
+                      "Src": "(function () {\r\n  document.addEventListener(\u0027DOMContentLoaded\u0027, () =\u003E {\r\n    const {\r\n        getValue, \r\n        setValue, \r\n        addEventListener, \r\n        querySelector,\r\n        notify\r\n    } = window.dynamicFields.DynamicFieldsExamples_SimpleImageGallery_Value;\r\n\r\n    const gallery = querySelector(\u0027simple-image-gallery\u0027);\r\n    gallery.onChange = (object) =\u003E {\r\n      setValue(object);\r\n      notify();\r\n    };\r\n\r\n    addEventListener(\u0027value\u0027, (object) =\u003E {\r\n        console.log(object);\r\n        if (object?.src) {\r\n            gallery.setImage(object?.src);\r\n        }\r\n    }, {init: true});\r\n  });\r\n})();\r\n",
+                      "Type": 0,
+                      "IsAsync": false,
+                      "IsDeferred": false,
+                      "ScriptType": ""
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "FieldName": "DynamicField",
+              "Name": "ImageCrop",
+              "Settings": {
+                "ContentPartFieldSettings": {
+                  "DisplayName": "ImageCrop",
+                  "Position": "5"
+                },
+                "DynamicFieldSettings": {
+                  "ContentType": "DynamicFieldsExamples",
+                  "ContentField": "ImageCrop",
+                  "IndexRawValue": false,
+                  "Code": "\u003Cimage-upload-component\u003E\r\n          \u003Cstyle\u003E\r\n            image-crop {\r\n              display: block;\r\n              max-width: 400px;\r\n              max-height: 400px;\r\n              margin-bottom: 10px;\r\n            }\r\n            input[type=\u0022file\u0022] {\r\n              margin-bottom: 10px;\r\n            }\r\n          \u003C/style\u003E\r\n          \u003Cimage-crop tabindex=\u00220\u0022\u003E\u003Cdiv data-loading-slot class=\u0022loading\u0022\u003ELoading...\u003C/div\u003E\u003C/image-crop\u003E\r\n\u003C/image-upload-component\u003E",
+                  "Resources": [
+                    {
+                      "At": 1,
+                      "Hash": "7D732CDDBA681FFA97263D8DDE7D5100A5BE1263FE40EE37A4A93C52652CC93B",
+                      "IsInline": false,
+                      "Src": "https://unpkg.com/@github/image-crop-element@latest/dist/index.js",
+                      "Type": 0,
+                      "IsAsync": false,
+                      "IsDeferred": false,
+                      "ScriptType": "module"
+                    },
+                    {
+                      "At": 1,
+                      "Hash": "E73523EBB30D28B0E4F5F437ACEE47EA357DD3D4A3369C2B7652A0DCD86B9323",
+                      "IsInline": false,
+                      "Src": "https://lampersky.github.io/DynamicFields/js/image-upload-component.min.js",
+                      "Type": 0,
+                      "IsAsync": false,
+                      "IsDeferred": false,
+                      "ScriptType": ""
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "FieldName": "DynamicField",
+              "Name": "ColorisJs",
+              "Settings": {
+                "ContentPartFieldSettings": {
+                  "DisplayName": "ColorisJs",
+                  "Position": "6"
+                },
+                "DynamicFieldSettings": {
+                  "ContentType": "DynamicFieldsExamples",
+                  "ContentField": "ColorisJs",
+                  "IndexRawValue": true,
+                  "Code": "\u003Cinput type=\u0022text\u0022 data-coloris\u003E",
+                  "Resources": [
+                    {
+                      "At": 1,
+                      "Hash": "74739D333123CC72CAEA81D9C71D5F37069EF0DA299F46519CD27B4EDCA2D815",
+                      "IsInline": false,
+                      "Src": "https://cdn.jsdelivr.net/gh/mdbassit/Coloris@latest/dist/coloris.min.css",
+                      "Type": 1
+                    },
+                    {
+                      "At": 1,
+                      "Hash": "3FFBC8EF01B39579AEED61C2EA350B2B1C25DF7A8435010D4A3619F9BEC8EA67",
+                      "IsInline": false,
+                      "Src": "https://cdn.jsdelivr.net/gh/mdbassit/Coloris@latest/dist/coloris.min.js",
+                      "Type": 0,
+                      "IsAsync": false,
+                      "IsDeferred": false,
+                      "ScriptType": ""
+                    },
+                    {
+                      "At": 1,
+                      "Hash": "7233700E4C3053849AA7335827AB2B32C7401AB64FEE79BBBBA4434F340E16C1",
+                      "IsInline": true,
+                      "Src": "(function () {\r\n    const {\r\n        setValue, \r\n        addEventListener, \r\n        querySelector,\r\n        getParentId\r\n    } = window.dynamicFields.DynamicFieldsExamples_ColorisJs_Value;\r\n\r\n    const coloris = querySelector(\u0027input[data-coloris]\u0027);\r\n    coloris.id = \u0060${getParentId()}_coloris\u0060;\r\n    \r\n    coloris.addEventListener(\u0027input\u0027, event =\u003E {\r\n        if (event.target.value === \u0022\u0022) {\r\n            setValue({ color: null});\r\n        } else {\r\n            setValue({ color: event.target.value});\r\n        }\r\n    });\r\n\r\n    addEventListener(\u0027value\u0027, (object) =\u003E {\r\n        coloris.value = object?.color;\r\n    }, {init: true});\r\n})();",
+                      "Type": 0,
+                      "IsAsync": false,
+                      "IsDeferred": false,
+                      "ScriptType": ""
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "FieldName": "DynamicField",
+              "Name": "FullCalendar",
+              "Settings": {
+                "ContentPartFieldSettings": {
+                  "DisplayName": "FullCalendar",
+                  "Position": "7"
+                },
+                "DynamicFieldSettings": {
+                  "ContentType": "DynamicFieldsExamples",
+                  "ContentField": "FullCalendar",
+                  "IndexRawValue": true,
+                  "Code": "\u003Cdiv class=\u0022d-flex gap-1 justify-content-evenly\u0022\u003E\r\n\u003Cdiv class=\u0027external-events\u0027\u003E\r\n  \u003Cp\u003E\r\n    \u003Cstrong\u003EDraggable Events\u003C/strong\u003E\r\n  \u003C/p\u003E\r\n\r\n  \u003Cdiv class=\u0027fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event\u0027\u003E\r\n    \u003Cdiv class=\u0027fc-event-main\u0027\u003EMy Event 1\u003C/div\u003E\r\n  \u003C/div\u003E\r\n  \u003Cdiv class=\u0027fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event\u0027\u003E\r\n    \u003Cdiv class=\u0027fc-event-main\u0027\u003EMy Event 2\u003C/div\u003E\r\n  \u003C/div\u003E\r\n  \u003Cdiv class=\u0027fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event\u0027\u003E\r\n    \u003Cdiv class=\u0027fc-event-main\u0027\u003EMy Event 3\u003C/div\u003E\r\n  \u003C/div\u003E\r\n  \u003Cdiv class=\u0027fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event\u0027\u003E\r\n    \u003Cdiv class=\u0027fc-event-main\u0027\u003EMy Event 4\u003C/div\u003E\r\n  \u003C/div\u003E\r\n  \u003Cdiv class=\u0027fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event\u0027\u003E\r\n    \u003Cdiv class=\u0027fc-event-main\u0027\u003EMy Event 5\u003C/div\u003E\r\n  \u003C/div\u003E\r\n\r\n  \u003Cp\u003E\r\n  \u003Clabel\u003E\r\n    \u003Cinput type=\u0022checkbox\u0022 class=\u0022drop-remove\u0022 /\u003E\r\n    remove after drop\r\n  \u003C/label\u003E\r\n  \u003C/p\u003E\r\n\u003C/div\u003E\r\n\r\n\u003Cdiv class=\u0022d-flex h-100\u0022\u003E\r\n  \u003Cdiv class=\u0027calendar\u0027\u003E\u003C/div\u003E\r\n\u003C/div\u003E\r\n\u003C/div\u003E",
+                  "Resources": [
+                    {
+                      "At": 2,
+                      "Hash": "579B6C4A5610600EFF580B72E94BFCA912B6771EE589DDF942A4B045E2B31E9F",
+                      "IsInline": false,
+                      "Src": "https://cdn.jsdelivr.net/npm/fullcalendar@6.1.19/index.global.min.js",
+                      "Type": 0,
+                      "IsAsync": false,
+                      "IsDeferred": false,
+                      "ScriptType": ""
+                    },
+                    {
+                      "At": 2,
+                      "Hash": "FEA6B6A4DF179C87406C1802D45EC70503E800402736D08C3513A695D979D62C",
+                      "IsInline": true,
+                      "Src": ".external-events {\r\n  padding: 0 10px;\r\n  border: 1px solid #ccc;\r\n  background: #eee;\r\n}\r\n\r\n.external-events .fc-event {\r\n  cursor: move;\r\n  margin: 3px 0;\r\n}\r\n\r\n.calendar {\r\n  margin: 20px auto;\r\n}",
+                      "Type": 1
+                    },
+                    {
+                      "At": 1,
+                      "Hash": "382379D487823D5F9C7549E3ED6D892174053F5E069FEA6E42BEE52DBA8E27C5",
+                      "IsInline": true,
+                      "Src": "(function () {\r\n  document.addEventListener(\u0027DOMContentLoaded\u0027, () =\u003E {\r\n    /* available functions */\r\n    const {\r\n        getValue, \r\n        setValue, \r\n        addEventListener, \r\n        querySelector\r\n    } = window.dynamicFields.DynamicFieldsExamples_FullCalendar_Value;\r\n    \r\n    var Calendar = FullCalendar.Calendar;\r\n    var Draggable = FullCalendar.Draggable;\r\n\r\n    var containerEl = querySelector(\u0027.external-events\u0027);\r\n    var calendarEl = querySelector(\u0027.calendar\u0027);\r\n    var checkbox = querySelector(\u0027.drop-remove\u0027);\r\n\r\n    // initialize the external events\r\n    // -----------------------------------------------------------------\r\n\r\n    new Draggable(containerEl, {\r\n      itemSelector: \u0027.fc-event\u0027,\r\n      eventData: function(eventEl) {\r\n        return {\r\n          title: eventEl.innerText\r\n        };\r\n      }\r\n    });\r\n\r\n    // initialize the calendar\r\n    // -----------------------------------------------------------------\r\n\r\n    var internalChange = false;\r\n    \r\n    var calendar = new Calendar(calendarEl, {\r\n      headerToolbar: {\r\n        left: \u0027prev,next today\u0027,\r\n        center: \u0027title\u0027,\r\n        right: \u0027dayGridMonth,timeGridWeek,timeGridDay\u0027\r\n      },\r\n      editable: true,\r\n      droppable: true, // this allows things to be dropped onto the calendar\r\n      drop: (event) =\u003E {\r\n        // is the \u0022remove after drop\u0022 checkbox checked?\r\n        if (checkbox.checked) {\r\n          // if so, remove the element from the \u0022Draggable Events\u0022 list\r\n          event.draggedEl.parentNode.removeChild(event.draggedEl);\r\n        }\r\n        setTimeout(() =\u003E {\r\n          console.log(\u0027Event droped\u0027);\r\n\t\t  setValue({events : calendar.getEvents()});\r\n        }, 0);\r\n      },\r\n      eventAdd: (info) =\u003E {\r\n        if (!internalChange) {\r\n          console.log(\u0027Event added\u0027);\r\n          setValue({events : calendar.getEvents()});\r\n        }\r\n      },\r\n      eventChange: (info) =\u003E {\r\n        console.log(\u0027Event changed\u0027);\r\n        setValue({events : calendar.getEvents()});\r\n      },\r\n      eventRemove: (info) =\u003E {\r\n        console.log(\u0027Event removed\u0027);\r\n        setValue({events : calendar.getEvents()});\r\n      }\r\n    });\r\n\r\n    addEventListener(\u0027value\u0027, (object) =\u003E {\r\n      calendar.removeAllEvents();\r\n\t  internalChange = true;\r\n      object?.events?.forEach(ev =\u003E calendar.addEvent(ev));\r\n      internalChange = false;\r\n      calendar.render();\r\n    }, {init: true});\r\n  });\r\n})();",
+                      "Type": 0,
+                      "IsAsync": false,
+                      "IsDeferred": false,
+                      "ScriptType": ""
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "FieldName": "DynamicField",
+              "Name": "CkEditor",
+              "Settings": {
+                "ContentPartFieldSettings": {
+                  "DisplayName": "CkEditor",
+                  "Position": "8"
+                },
+                "DynamicFieldSettings": {
+                  "ContentType": "DynamicFieldsExamples",
+                  "ContentField": "CkEditor",
+                  "IndexRawValue": true,
+                  "Code": "\u003Cdiv class=\u0022editor\u0022\u003E\r\n    \u003Cp\u003EThis is the editor content.\u003C/p\u003E\r\n\u003C/div\u003E",
+                  "Resources": [
+                    {
+                      "At": 1,
+                      "Hash": "02439DB5045AE7D91DF2173EC4CC3B1BAD5D53E86412D508870A1782F6D980E7",
+                      "IsInline": false,
+                      "Src": "https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js",
+                      "Type": 0,
+                      "IsAsync": false,
+                      "IsDeferred": false,
+                      "ScriptType": ""
+                    },
+                    {
+                      "At": 1,
+                      "Hash": "DEFF1966CAD4E7C0BA55B8E1DA95520D31C2606076102A494AAA5295E23D18DA",
+                      "IsInline": true,
+                      "Src": "(function () {\r\n  document.addEventListener(\u0027DOMContentLoaded\u0027, () =\u003E {\r\n    const {\r\n        getValue, \r\n        setValue, \r\n        addEventListener, \r\n        querySelector\r\n    } = window.dynamicFields.DynamicFieldsExamples_CkEditor_Value;\r\n\r\n    const editorElement = querySelector(\u0027.editor\u0027);\r\n    const ckEditor = CKEDITOR.replace(editorElement);\r\n    ckEditor.on(\u0027change\u0027, function () {\r\n      let content = ckEditor.getData();\r\n      console.log(\u0022Editor changed\u0022);\r\n      setValue({ content: content })\r\n    });\r\n    \r\n    addEventListener(\u0027value\u0027, (object) =\u003E {\r\n      if (object?.content) {\r\n        ckEditor.setData(object?.content);\r\n      }\r\n    }, {init: true});\r\n  });\r\n})();",
+                      "Type": 0,
+                      "IsAsync": false,
+                      "IsDeferred": false,
+                      "ScriptType": ""
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "FieldName": "DynamicField",
+              "Name": "Jspreadsheet",
+              "Settings": {
+                "ContentPartFieldSettings": {
+                  "DisplayName": "Jspreadsheet",
+                  "Position": "3"
+                },
+                "DynamicFieldSettings": {
+                  "ContentType": "DynamicFieldsExamples",
+                  "ContentField": "Jspreadsheet",
+                  "IndexRawValue": true,
+                  "Code": "\u003Cdiv class=\u0022spreadsheet\u0022\u003E\u003C/div\u003E",
+                  "Resources": [
+                    {
+                      "At": 1,
+                      "Hash": "00BB92DD3BA678F43554CB43D457AC07394B988A0D25D74CEFF388C6F73EFC10",
+                      "IsInline": false,
+                      "Src": "https://bossanova.uk/jspreadsheet/v4/jexcel.js",
+                      "Type": 0,
+                      "IsAsync": false,
+                      "IsDeferred": false,
+                      "ScriptType": ""
+                    },
+                    {
+                      "At": 1,
+                      "Hash": "8DD3AD701DC44C138036806E49A815863270902B93B9841DA9738291A730D744",
+                      "IsInline": false,
+                      "Src": "https://jsuites.net/v4/jsuites.js",
+                      "Type": 0,
+                      "IsAsync": false,
+                      "IsDeferred": false,
+                      "ScriptType": ""
+                    },
+                    {
+                      "At": 1,
+                      "Hash": "7196807E4423FDC06FFE2557E959314190EB476918CDF1C321CA8799E905A794",
+                      "IsInline": false,
+                      "Src": "https://jsuites.net/v4/jsuites.css",
+                      "Type": 1
+                    },
+                    {
+                      "At": 1,
+                      "Hash": "DA44DFFA91B62490B88E9E18C40032660AF3B8F82BCE59E23BC5AEA18984FA96",
+                      "IsInline": false,
+                      "Src": "https://bossanova.uk/jspreadsheet/v4/jexcel.css",
+                      "Type": 1
+                    },
+                    {
+                      "At": 1,
+                      "Hash": "A0042229864F96E760D4531C43EDEF0CB8DDEACF5C5FCABA69D09A3547756DCE",
+                      "IsInline": true,
+                      "Src": "(function () {\r\n  document.addEventListener(\u0027DOMContentLoaded\u0027, () =\u003E {\r\n    /* available functions */\r\n    const {\r\n        getValue, \r\n        setValue, \r\n        addEventListener, \r\n        querySelector, \r\n        closest,\r\n        getPathBase,\r\n        getLangDir\r\n    } = window.dynamicFields.DynamicFieldsExamples_Jspreadsheet_Value;\r\n\r\n    var data = [\r\n        [\u0027Jazz\u0027, \u0027Honda\u0027, \u00272019-02-12\u0027, \u0027\u0027, true, \u0027$ 2.000,00\u0027, \u0027#777700\u0027],\r\n        [\u0027Civic\u0027, \u0027Honda\u0027, \u00272018-07-11\u0027, \u0027\u0027, true, \u0027$ 4.000,01\u0027, \u0027#007777\u0027],\r\n    ];\r\n\r\n    var spreadsheet = jspreadsheet(querySelector(\u0027.spreadsheet\u0027), {\r\n      data:data,\r\n      columns: [\r\n          { type: \u0027text\u0027, title:\u0027Car\u0027, width:120 },\r\n          { type: \u0027dropdown\u0027, title:\u0027Make\u0027, width:200, source:[ \u0022Alfa Romeo\u0022, \u0022Audi\u0022, \u0022Bmw\u0022 ] },\r\n          { type: \u0027calendar\u0027, title:\u0027Available\u0027, width:200 },\r\n          { type: \u0027image\u0027, title:\u0027Photo\u0027, width:120 },\r\n          { type: \u0027checkbox\u0027, title:\u0027Stock\u0027, width:80 },\r\n          { type: \u0027numeric\u0027, title:\u0027Price\u0027, width:100, mask:\u0027$ #.##,00\u0027, decimal:\u0027,\u0027 },\r\n          { type: \u0027color\u0027, width:100, render:\u0027square\u0027, }\r\n      ],\r\n      onchange: function(instance, cell, x, y, value) {\r\n        console.log(\u0022value changed\u0022);\r\n\t\tsetValue({ data : spreadsheet.getData()});\t\r\n      }\r\n  });\r\n    \r\n    addEventListener(\u0027value\u0027, (object) =\u003E {\r\n      if (object?.data) {\r\n        spreadsheet.setData(object?.data);\r\n      }\r\n    }, {init: true});\r\n  });\r\n})();",
+                      "Type": 0,
+                      "IsAsync": false,
+                      "IsDeferred": false,
+                      "ScriptType": ""
+                    },
+                    {
+                      "At": 1,
+                      "Hash": "FD4D8DB3D85D464AD55BBA642739E5BFFE948DCACEE0B787B3FFEA8DC1266A8F",
+                      "IsInline": true,
+                      "Src": ".jexcel .editor .jupload {\r\n  z-index: 1000;\r\n}",
+                      "Type": 1
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "FieldName": "DynamicField",
+              "Name": "GrapesJsEditor",
+              "Settings": {
+                "ContentPartFieldSettings": {
+                  "DisplayName": "GrapesJsEditor",
+                  "Position": "4"
+                },
+                "DynamicFieldSettings": {
+                  "ContentType": "DynamicFieldsExamples",
+                  "ContentField": "GrapesJsEditor",
+                  "IndexRawValue": true,
+                  "Code": "\u003Cdiv class=\u0022gjs\u0022\u003E\r\n  \u003Ch1\u003EHello GrapesJS in Modal!\u003C/h1\u003E\r\n\u003C/div\u003E",
+                  "Resources": [
+                    {
+                      "At": 2,
+                      "Hash": "F3F7DB3184F81DBC5C8B087CC6D1F2911FAB04ED8D45638DDC0A83371B1BFF62",
+                      "IsInline": true,
+                      "Src": "window.FontAwesomeConfig = { autoReplaceSvg: \u0027nest\u0027 };",
+                      "Type": 0,
+                      "IsAsync": false,
+                      "IsDeferred": false,
+                      "ScriptType": ""
+                    },
+                    {
+                      "At": 1,
+                      "Hash": "E68EEED11CA7BE94AF8DE2F1CA864AA59DC1354DD588BCC51B9F23591ED213A3",
+                      "IsInline": false,
+                      "Src": "https://unpkg.com/grapesjs@0.22.12/dist/css/grapes.min.css",
+                      "Type": 1
+                    },
+                    {
+                      "At": 1,
+                      "Hash": "CB66A4BDED3F8F5E720063CFE685B6E673AC0E3C654442D2388401B43B000BB6",
+                      "IsInline": false,
+                      "Src": "https://unpkg.com/grapesjs@0.22.12/dist/grapes.min.js",
+                      "Type": 0,
+                      "IsAsync": false,
+                      "IsDeferred": false,
+                      "ScriptType": ""
+                    },
+                    {
+                      "At": 1,
+                      "Hash": "AD8734A270D371E0FC96C01DE7C1596CB12E6C0FAC35EFA3F34764AC14180A45",
+                      "IsInline": true,
+                      "Src": "(function () {\r\n  document.addEventListener(\u0027DOMContentLoaded\u0027, () =\u003E {\r\n    const {\r\n        setValue, \r\n        addEventListener, \r\n        querySelector,\r\n        notify\r\n    } = window.dynamicFields.DynamicFieldsExamples_GrapesJsEditor_Value;\r\n\r\n    const container = querySelector(\u0027.gjs\u0027);   \r\n    const editor = grapesjs.init({\r\n      container: container,\r\n      height: \u0027500px\u0027,\r\n      width: \u0027100%\u0027,\r\n      fromElement: true,\r\n      storageManager: false,\r\n    });\r\n    editor.on(\u0027change\u0027, () =\u003E {\r\n      const html = editor.getHtml();\r\n      const css = editor.getCss();\r\n      const object = {\r\n        html,\r\n        css\r\n      }\r\n      setValue(object);\r\n    });\r\n\r\n    addEventListener(\u0027value\u0027, (object) =\u003E {\r\n      const { html, css } = object ?? {};\r\n      if (html \u0026\u0026 css) {\r\n        editor.setComponents(html);\r\n        editor.setStyle(css);\r\n      }\r\n    }, {init: true});\r\n  });\r\n})();",
+                      "Type": 0,
+                      "IsAsync": false,
+                      "IsDeferred": false,
+                      "ScriptType": ""
+                    },
+                    {
+                      "At": 1,
+                      "Hash": "E33FB641F6BC55EB12E233F134F8149D94FC6A19F9355EE0026B7599E99D213D",
+                      "IsInline": true,
+                      "Src": "body:not(.left-sidebar-compact) #ta-left-sidebar i {\r\n\ttop: inherit !important;\r\n}",
+                      "Type": 1
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "FieldName": "DynamicField",
+              "Name": "BootstrapFields",
+              "Settings": {
+                "ContentPartFieldSettings": {
+                  "DisplayName": "BootstrapFields",
+                  "Position": "2"
+                },
+                "DynamicFieldSettings": {
+                  "ContentType": "DynamicFieldsExamples",
+                  "ContentField": "BootstrapFields",
+                  "IndexRawValue": false,
+                  "Code": "\u003Cdiv class=\u0022fields-container\u0022\u003E\r\n  \u003C!-- Text Input --\u003E\r\n  \u003Cdiv class=\u0022field-container\u0022\u003E\r\n    \u003Clabel\u003EText Input\u003C/label\u003E\r\n    \u003Cinput type=\u0022text\u0022 class=\u0022form-control\u0022 placeholder=\u0022Text input\u0022 name=\u0022textInput\u0022\u003E\r\n  \u003C/div\u003E\r\n\r\n  \u003C!-- Password --\u003E\r\n  \u003Cdiv class=\u0022field-container\u0022\u003E\r\n    \u003Clabel\u003EPassword\u003C/label\u003E\r\n    \u003Cinput type=\u0022password\u0022 class=\u0022form-control\u0022 placeholder=\u0022Password\u0022 name=\u0022password\u0022\u003E\r\n  \u003C/div\u003E\r\n\r\n  \u003C!-- Email --\u003E\r\n  \u003Cdiv class=\u0022field-container\u0022\u003E\r\n    \u003Clabel\u003EEmail\u003C/label\u003E\r\n    \u003Cinput type=\u0022email\u0022 class=\u0022form-control\u0022 placeholder=\u0022Email\u0022 name=\u0022email\u0022\u003E\r\n  \u003C/div\u003E\r\n\r\n  \u003C!-- Number --\u003E\r\n  \u003Cdiv class=\u0022field-container\u0022\u003E\r\n    \u003Clabel\u003ENumber\u003C/label\u003E\r\n    \u003Cinput type=\u0022number\u0022 class=\u0022form-control\u0022 placeholder=\u0022Number\u0022 name=\u0022number\u0022\u003E\r\n  \u003C/div\u003E\r\n\r\n  \u003C!-- Date / Time --\u003E\r\n  \u003Cdiv class=\u0022field-container\u0022\u003E\r\n    \u003Clabel\u003EDate\u003C/label\u003E\r\n    \u003Cinput type=\u0022date\u0022 class=\u0022form-control\u0022 name=\u0022date\u0022\u003E\r\n  \u003C/div\u003E\r\n  \u003Cdiv class=\u0022field-container\u0022\u003E\r\n    \u003Clabel\u003ETime\u003C/label\u003E\r\n    \u003Cinput type=\u0022time\u0022 class=\u0022form-control\u0022 name=\u0022time\u0022\u003E\r\n  \u003C/div\u003E\r\n  \u003Cdiv class=\u0022field-container\u0022\u003E\r\n    \u003Clabel\u003EDateTime Local\u003C/label\u003E\r\n    \u003Cinput type=\u0022datetime-local\u0022 class=\u0022form-control\u0022 name=\u0022dateTimeLocal\u0022\u003E\r\n  \u003C/div\u003E\r\n\r\n  \u003C!-- URL / Telephone / Color / Search --\u003E\r\n  \u003Cdiv class=\u0022field-container\u0022\u003E\r\n    \u003Clabel\u003EURL\u003C/label\u003E\r\n    \u003Cinput type=\u0022url\u0022 class=\u0022form-control\u0022 placeholder=\u0022https://example.com\u0022 name=\u0022url\u0022\u003E\r\n  \u003C/div\u003E\r\n  \u003Cdiv class=\u0022field-container\u0022\u003E\r\n    \u003Clabel\u003ETelephone\u003C/label\u003E\r\n    \u003Cinput type=\u0022tel\u0022 class=\u0022form-control\u0022 placeholder=\u0022\u002B1234567890\u0022 name=\u0022telephone\u0022\u003E\r\n  \u003C/div\u003E\r\n  \u003Cdiv class=\u0022field-container\u0022\u003E\r\n    \u003Clabel\u003EColor Picker\u003C/label\u003E\r\n    \u003Cinput type=\u0022color\u0022 class=\u0022form-control form-control-color\u0022 name=\u0022colorPicker\u0022\u003E\r\n  \u003C/div\u003E\r\n  \u003Cdiv class=\u0022field-container\u0022\u003E\r\n    \u003Clabel\u003ESearch\u003C/label\u003E\r\n    \u003Cinput type=\u0022search\u0022 class=\u0022form-control\u0022 placeholder=\u0022Search...\u0022 name=\u0022search\u0022\u003E\r\n  \u003C/div\u003E\r\n\r\n  \u003C!-- Range --\u003E\r\n  \u003Cdiv class=\u0022field-container\u0022\u003E\r\n    \u003Clabel\u003ERange\u003C/label\u003E\r\n    \u003Cinput type=\u0022range\u0022 class=\u0022form-range\u0022 name=\u0022range\u0022\u003E\r\n  \u003C/div\u003E\r\n\r\n  \u003C!-- Textarea --\u003E\r\n  \u003Cdiv class=\u0022field-container\u0022\u003E\r\n    \u003Clabel\u003ETextarea\u003C/label\u003E\r\n    \u003Ctextarea class=\u0022form-control\u0022 rows=\u00223\u0022 placeholder=\u0022Textarea\u0022 name=\u0022textarea\u0022\u003E\u003C/textarea\u003E\r\n  \u003C/div\u003E\r\n\r\n  \u003C!-- Select --\u003E\r\n  \u003Cdiv class=\u0022field-container\u0022\u003E\r\n    \u003Clabel\u003ESelect\u003C/label\u003E\r\n    \u003Cselect class=\u0022form-select\u0022 name=\u0022select\u0022\u003E\r\n      \u003Coption selected\u003EChoose...\u003C/option\u003E\r\n      \u003Coption value=\u00221\u0022\u003EOption 1\u003C/option\u003E\r\n      \u003Coption value=\u00222\u0022\u003EOption 2\u003C/option\u003E\r\n    \u003C/select\u003E\r\n  \u003C/div\u003E\r\n\r\n  \u003C!-- Multiple Select --\u003E\r\n  \u003Cdiv class=\u0022field-container\u0022\u003E\r\n    \u003Clabel\u003EMultiple Select\u003C/label\u003E\r\n    \u003Cselect class=\u0022form-select\u0022 multiple name=\u0022multipleSelect\u0022\u003E\r\n      \u003Coption value=\u00221\u0022\u003EOption 1\u003C/option\u003E\r\n      \u003Coption value=\u00222\u0022\u003EOption 2\u003C/option\u003E\r\n      \u003Coption value=\u00223\u0022\u003EOption 3\u003C/option\u003E\r\n    \u003C/select\u003E\r\n  \u003C/div\u003E\r\n\r\n  \u003C!-- Checkbox --\u003E\r\n  \u003Cdiv class=\u0022field-container form-check\u0022\u003E\r\n    \u003Cinput type=\u0022checkbox\u0022 class=\u0022form-check-input\u0022 id=\u0022checkbox1\u0022 name=\u0022checkbox\u0022\u003E\r\n    \u003Clabel class=\u0022form-check-label\u0022 for=\u0022checkbox1\u0022\u003ECheckbox\u003C/label\u003E\r\n  \u003C/div\u003E\r\n\r\n  \u003C!-- Radio Buttons --\u003E\r\n  \u003Cdiv class=\u0022field-container\u0022\u003E\r\n    \u003Clabel\u003ERadio Buttons\u003C/label\u003E\r\n    \u003Cdiv class=\u0022form-check\u0022\u003E\r\n      \u003Cinput type=\u0022radio\u0022 class=\u0022form-check-input\u0022 name=\u0022radioButtons\u0022 id=\u0022radio1\u0022 value=\u0022option1\u0022\u003E\r\n      \u003Clabel class=\u0022form-check-label\u0022 for=\u0022radio1\u0022\u003EOption 1\u003C/label\u003E\r\n    \u003C/div\u003E\r\n    \u003Cdiv class=\u0022form-check\u0022\u003E\r\n      \u003Cinput type=\u0022radio\u0022 class=\u0022form-check-input\u0022 name=\u0022radioButtons\u0022 id=\u0022radio2\u0022 value=\u0022option2\u0022\u003E\r\n      \u003Clabel class=\u0022form-check-label\u0022 for=\u0022radio2\u0022\u003EOption 2\u003C/label\u003E\r\n    \u003C/div\u003E\r\n  \u003C/div\u003E\r\n\r\n  \u003C!-- Switch --\u003E\r\n  \u003Cdiv class=\u0022field-container form-check form-switch\u0022\u003E\r\n    \u003Cinput class=\u0022form-check-input\u0022 type=\u0022checkbox\u0022 id=\u0022switch1\u0022 name=\u0022switchToggle\u0022\u003E\r\n    \u003Clabel class=\u0022form-check-label\u0022 for=\u0022switch1\u0022\u003ESwitch / Toggle\u003C/label\u003E\r\n  \u003C/div\u003E\r\n\r\n  \u003C!-- Input Group Example --\u003E\r\n  \u003Cdiv class=\u0022field-container\u0022\u003E\r\n    \u003Clabel\u003EInput Group\u003C/label\u003E\r\n    \u003Cdiv class=\u0022input-group\u0022\u003E\r\n      \u003Cspan class=\u0022input-group-text\u0022\u003E@\u003C/span\u003E\r\n      \u003Cinput type=\u0022text\u0022 class=\u0022form-control\u0022 placeholder=\u0022Username\u0022 name=\u0022inputGroup\u0022\u003E\r\n    \u003C/div\u003E\r\n  \u003C/div\u003E\r\n\r\n  \u003C!-- Floating Label Example --\u003E\r\n  \u003Cdiv class=\u0022field-container form-floating\u0022\u003E\r\n    \u003Cinput type=\u0022email\u0022 class=\u0022form-control\u0022 id=\u0022floatingEmail\u0022 placeholder=\u0022name@example.com\u0022 name=\u0022floatingEmail\u0022\u003E\r\n    \u003Clabel for=\u0022floatingEmail\u0022\u003EFloating Label\u003C/label\u003E\r\n  \u003C/div\u003E\r\n\u003C/div\u003E\r\n",
+                  "Resources": [
+                    {
+                      "At": 2,
+                      "Hash": "1147BF459225C7BD5452BC5E9AF049C83298BF2E1FE119926B4599F9C938C8BE",
+                      "IsInline": true,
+                      "Src": ".field-container label { font-weight: bold; display: block; margin-bottom: 0.5rem; }\r\n.field-container { margin-bottom: 1rem; }",
+                      "Type": 1
+                    },
+                    {
+                      "At": 1,
+                      "Hash": "E3A60E46469FB7AC88A9B2FD197CB3699ADD869DDC9FF88CF1E1C571D5498824",
+                      "IsInline": true,
+                      "Src": "(function () {\r\n  document.addEventListener(\u0027DOMContentLoaded\u0027, () =\u003E {\r\n    const {\r\n      getValue, \r\n      setValue, \r\n      addEventListener, \r\n      querySelectorAll, \r\n    } = window.dynamicFields.DynamicFieldsExamples_BootstrapFields_Value;\r\n    \r\n    const getDict = (allFields) =\u003E {\r\n      return Array.from(allFields).reduce((obj, el) =\u003E {\r\n        let value;\r\n        if (el.type === \u0027checkbox\u0027) {\r\n          value = el.checked;\r\n        } else if (el.type === \u0027radio\u0027) {\r\n          if (el.checked) {\r\n            value = el.value;\r\n          } else {\r\n            if (el.name in obj) return obj;\r\n            value = null;\r\n          }\r\n        } else if (el.tagName === \u0027SELECT\u0027 \u0026\u0026 el.multiple) {\r\n          value = Array.from(el.selectedOptions).map(opt =\u003E opt.value);\r\n        } else {\r\n          value = el.value;\r\n        }\r\n        obj[el.name] = value;\r\n        return obj;\r\n      }, {});\r\n    };\r\n    \r\n    const setDict = (allFields, dict) =\u003E {\r\n      Array.from(allFields).forEach(el =\u003E {\r\n        const value = dict?.[el.name];\r\n        if (value === undefined) return;\r\n        if (el.type === \u0027checkbox\u0027) {\r\n          if (Array.isArray(value)) {\r\n            el.checked = value.includes(el.value);\r\n          } else {\r\n            el.checked = Boolean(value);\r\n          }\r\n        } else if (el.type === \u0027radio\u0027) {\r\n          el.checked = el.value === value;\r\n        } else if (el.tagName === \u0027SELECT\u0027 \u0026\u0026 el.multiple) {\r\n          Array.from(el.options).forEach(opt =\u003E {\r\n            opt.selected = value.includes(opt.value);\r\n          });\r\n        } else {\r\n          el.value = value;\r\n        }\r\n      });\r\n    }\r\n       \r\n    const allFields = querySelectorAll(\u0027.fields-container input, .fields-container select, .fields-container textarea\u0027);\r\n\r\n    allFields.forEach(element =\u003E {\r\n      element.addEventListener(\u0027input\u0027, (event) =\u003E {\r\n        if (event.target.matches(\u0027input, textarea\u0027)) {\r\n          console.log(\u0027Input changed\u0027, event.target.value);\r\n          setValue(getDict(allFields));\r\n        }\r\n      });\r\n      element.addEventListener(\u0027change\u0027, (event) =\u003E {\r\n        const type = event.target.type;\r\n        if (type === \u0027checkbox\u0027 || type === \u0027radio\u0027 || type === \u0027file\u0027 || type === \u0027range\u0027 || event.target.tagName.toLowerCase() === \u0027select\u0027) {\r\n          console.log(\u0027Changed field:\u0027, event.target.tagName, type, event.target.value);\r\n          setValue(getDict(allFields));\r\n        }\r\n      });\r\n    });\r\n\r\n    addEventListener(\u0027value\u0027, (object) =\u003E {\r\n      setDict(allFields, object ?? {});\r\n    }, {init: true});\r\n  });\r\n})();",
+                      "Type": 0,
+                      "IsAsync": false,
+                      "IsDeferred": false,
+                      "ScriptType": ""
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "FieldName": "DynamicField",
+              "Name": "SimpleInputForm",
+              "Settings": {
+                "ContentPartFieldSettings": {
+                  "DisplayName": "SimpleInputForm",
+                  "Position": "1"
+                },
+                "DynamicFieldSettings": {
+                  "ContentType": "DynamicFieldsExamples",
+                  "ContentField": "SimpleInputForm",
+                  "IndexRawValue": false,
+                  "Code": "\u003Cdiv class=\u0022fields-container\u0022\u003E\r\n  \u003C!-- Text Input --\u003E\r\n  \u003Cdiv class=\u0022field-container\u0022\u003E\r\n    \u003Clabel\u003EText Input\u003C/label\u003E\r\n    \u003Cinput type=\u0022text\u0022 class=\u0022form-control\u0022 placeholder=\u0022Text input\u0022 name=\u0022textInput\u0022\u003E\r\n  \u003C/div\u003E\r\n\r\n  \u003C!-- Password --\u003E\r\n  \u003Cdiv class=\u0022field-container\u0022\u003E\r\n    \u003Clabel\u003EPassword\u003C/label\u003E\r\n    \u003Cinput type=\u0022password\u0022 class=\u0022form-control\u0022 placeholder=\u0022Password\u0022 name=\u0022password\u0022\u003E\r\n  \u003C/div\u003E\r\n\r\n  \u003C!-- Email --\u003E\r\n  \u003Cdiv class=\u0022field-container\u0022\u003E\r\n    \u003Clabel\u003EEmail\u003C/label\u003E\r\n    \u003Cinput type=\u0022email\u0022 class=\u0022form-control\u0022 placeholder=\u0022Email\u0022 name=\u0022email\u0022\u003E\r\n  \u003C/div\u003E\r\n\r\n  \u003C!-- Number --\u003E\r\n  \u003Cdiv class=\u0022field-container\u0022\u003E\r\n    \u003Clabel\u003ENumber\u003C/label\u003E\r\n    \u003Cinput type=\u0022number\u0022 class=\u0022form-control\u0022 placeholder=\u0022Number\u0022 name=\u0022number\u0022\u003E\r\n  \u003C/div\u003E\r\n\r\n  \u003C!-- Date / Time --\u003E\r\n  \u003Cdiv class=\u0022field-container\u0022\u003E\r\n    \u003Clabel\u003EDate\u003C/label\u003E\r\n    \u003Cinput type=\u0022date\u0022 class=\u0022form-control\u0022 name=\u0022date\u0022\u003E\r\n  \u003C/div\u003E\r\n  \u003Cdiv class=\u0022field-container\u0022\u003E\r\n    \u003Clabel\u003ETime\u003C/label\u003E\r\n    \u003Cinput type=\u0022time\u0022 class=\u0022form-control\u0022 name=\u0022time\u0022\u003E\r\n  \u003C/div\u003E\r\n  \u003Cdiv class=\u0022field-container\u0022\u003E\r\n    \u003Clabel\u003EDateTime Local\u003C/label\u003E\r\n    \u003Cinput type=\u0022datetime-local\u0022 class=\u0022form-control\u0022 name=\u0022dateTimeLocal\u0022\u003E\r\n  \u003C/div\u003E\r\n\r\n  \u003C!-- URL / Telephone / Color / Search --\u003E\r\n  \u003Cdiv class=\u0022field-container\u0022\u003E\r\n    \u003Clabel\u003EURL\u003C/label\u003E\r\n    \u003Cinput type=\u0022url\u0022 class=\u0022form-control\u0022 placeholder=\u0022https://example.com\u0022 name=\u0022url\u0022\u003E\r\n  \u003C/div\u003E\r\n  \u003Cdiv class=\u0022field-container\u0022\u003E\r\n    \u003Clabel\u003ETelephone\u003C/label\u003E\r\n    \u003Cinput type=\u0022tel\u0022 class=\u0022form-control\u0022 placeholder=\u0022\u002B1234567890\u0022 name=\u0022telephone\u0022\u003E\r\n  \u003C/div\u003E\r\n  \u003Cdiv class=\u0022field-container\u0022\u003E\r\n    \u003Clabel\u003EColor Picker\u003C/label\u003E\r\n    \u003Cinput type=\u0022color\u0022 class=\u0022form-control form-control-color\u0022 name=\u0022colorPicker\u0022\u003E\r\n  \u003C/div\u003E\r\n  \u003Cdiv class=\u0022field-container\u0022\u003E\r\n    \u003Clabel\u003ESearch\u003C/label\u003E\r\n    \u003Cinput type=\u0022search\u0022 class=\u0022form-control\u0022 placeholder=\u0022Search...\u0022 name=\u0022search\u0022\u003E\r\n  \u003C/div\u003E\r\n\r\n  \u003C!-- Range --\u003E\r\n  \u003Cdiv class=\u0022field-container\u0022\u003E\r\n    \u003Clabel\u003ERange\u003C/label\u003E\r\n    \u003Cinput type=\u0022range\u0022 class=\u0022form-range\u0022 name=\u0022range\u0022\u003E\r\n  \u003C/div\u003E\r\n\r\n  \u003C!-- Textarea --\u003E\r\n  \u003Cdiv class=\u0022field-container\u0022\u003E\r\n    \u003Clabel\u003ETextarea\u003C/label\u003E\r\n    \u003Ctextarea class=\u0022form-control\u0022 rows=\u00223\u0022 placeholder=\u0022Textarea\u0022 name=\u0022textarea\u0022\u003E\u003C/textarea\u003E\r\n  \u003C/div\u003E\r\n\r\n  \u003C!-- Select --\u003E\r\n  \u003Cdiv class=\u0022field-container\u0022\u003E\r\n    \u003Clabel\u003ESelect\u003C/label\u003E\r\n    \u003Cselect class=\u0022form-select\u0022 name=\u0022select\u0022\u003E\r\n      \u003Coption selected\u003EChoose...\u003C/option\u003E\r\n      \u003Coption value=\u00221\u0022\u003EOption 1\u003C/option\u003E\r\n      \u003Coption value=\u00222\u0022\u003EOption 2\u003C/option\u003E\r\n    \u003C/select\u003E\r\n  \u003C/div\u003E\r\n\r\n  \u003C!-- Multiple Select --\u003E\r\n  \u003Cdiv class=\u0022field-container\u0022\u003E\r\n    \u003Clabel\u003EMultiple Select\u003C/label\u003E\r\n    \u003Cselect class=\u0022form-select\u0022 multiple name=\u0022multipleSelect\u0022\u003E\r\n      \u003Coption value=\u00221\u0022\u003EOption 1\u003C/option\u003E\r\n      \u003Coption value=\u00222\u0022\u003EOption 2\u003C/option\u003E\r\n      \u003Coption value=\u00223\u0022\u003EOption 3\u003C/option\u003E\r\n    \u003C/select\u003E\r\n  \u003C/div\u003E\r\n\r\n  \u003C!-- Checkbox --\u003E\r\n  \u003Cdiv class=\u0022field-container form-check\u0022\u003E\r\n    \u003Cinput type=\u0022checkbox\u0022 class=\u0022form-check-input\u0022 id=\u0022checkbox1\u0022 name=\u0022checkbox\u0022\u003E\r\n    \u003Clabel class=\u0022form-check-label\u0022 for=\u0022checkbox1\u0022\u003ECheckbox\u003C/label\u003E\r\n  \u003C/div\u003E\r\n\r\n  \u003C!-- Radio Buttons --\u003E\r\n  \u003Cdiv class=\u0022field-container\u0022\u003E\r\n    \u003Clabel\u003ERadio Buttons\u003C/label\u003E\r\n    \u003Cdiv class=\u0022form-check\u0022\u003E\r\n      \u003Cinput type=\u0022radio\u0022 class=\u0022form-check-input\u0022 name=\u0022radioButtons\u0022 id=\u0022radio1\u0022 value=\u0022option1\u0022\u003E\r\n      \u003Clabel class=\u0022form-check-label\u0022 for=\u0022radio1\u0022\u003EOption 1\u003C/label\u003E\r\n    \u003C/div\u003E\r\n    \u003Cdiv class=\u0022form-check\u0022\u003E\r\n      \u003Cinput type=\u0022radio\u0022 class=\u0022form-check-input\u0022 name=\u0022radioButtons\u0022 id=\u0022radio2\u0022 value=\u0022option2\u0022\u003E\r\n      \u003Clabel class=\u0022form-check-label\u0022 for=\u0022radio2\u0022\u003EOption 2\u003C/label\u003E\r\n    \u003C/div\u003E\r\n  \u003C/div\u003E\r\n\r\n  \u003C!-- Switch --\u003E\r\n  \u003Cdiv class=\u0022field-container form-check form-switch\u0022\u003E\r\n    \u003Cinput class=\u0022form-check-input\u0022 type=\u0022checkbox\u0022 id=\u0022switch1\u0022 name=\u0022switchToggle\u0022\u003E\r\n    \u003Clabel class=\u0022form-check-label\u0022 for=\u0022switch1\u0022\u003ESwitch / Toggle\u003C/label\u003E\r\n  \u003C/div\u003E\r\n\r\n  \u003C!-- Input Group Example --\u003E\r\n  \u003Cdiv class=\u0022field-container\u0022\u003E\r\n    \u003Clabel\u003EInput Group\u003C/label\u003E\r\n    \u003Cdiv class=\u0022input-group\u0022\u003E\r\n      \u003Cspan class=\u0022input-group-text\u0022\u003E@\u003C/span\u003E\r\n      \u003Cinput type=\u0022text\u0022 class=\u0022form-control\u0022 placeholder=\u0022Username\u0022 name=\u0022inputGroup\u0022\u003E\r\n    \u003C/div\u003E\r\n  \u003C/div\u003E\r\n\r\n  \u003C!-- Floating Label Example --\u003E\r\n  \u003Cdiv class=\u0022field-container form-floating\u0022\u003E\r\n    \u003Cinput type=\u0022email\u0022 class=\u0022form-control\u0022 id=\u0022floatingEmail\u0022 placeholder=\u0022name@example.com\u0022 name=\u0022floatingEmail\u0022\u003E\r\n    \u003Clabel for=\u0022floatingEmail\u0022\u003EFloating Label\u003C/label\u003E\r\n  \u003C/div\u003E\r\n\u003C/div\u003E\r\n",
+                  "Resources": [
+                    {
+                      "At": 2,
+                      "Hash": "1147BF459225C7BD5452BC5E9AF049C83298BF2E1FE119926B4599F9C938C8BE",
+                      "IsInline": true,
+                      "Src": ".field-container label { font-weight: bold; display: block; margin-bottom: 0.5rem; }\r\n.field-container { margin-bottom: 1rem; }",
+                      "Type": 1
+                    },
+                    {
+                      "At": 1,
+                      "Hash": "EAF832F1B2439EA7B21FAE9FAF50CEB63C3994610F534C742C5B71C88767182C",
+                      "IsInline": false,
+                      "Src": "https://lampersky.github.io/DynamicFields/js/simple-input-form.min.js",
+                      "Type": 0,
+                      "IsAsync": false,
+                      "IsDeferred": false,
+                      "ScriptType": ""
+                    },
+                    {
+                      "At": 1,
+                      "Hash": "C99E05B16D6B474AC36241C2D0009E9FCAEB1619A3DDD07087616FC357371A16",
+                      "IsInline": true,
+                      "Src": "initSimpleInputForm(window.dynamicFields.DynamicFieldsExamples_SimpleInputForm_Value)",
+                      "Type": 0,
+                      "IsAsync": false,
+                      "IsDeferred": false,
+                      "ScriptType": ""
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "FieldName": "DynamicField",
+              "Name": "ReactComponent",
+              "Settings": {
+                "ContentPartFieldSettings": {
+                  "DisplayName": "ReactComponent"
+                },
+                "DynamicFieldSettings": {
+                  "ContentType": "DynamicFieldsExamples",
+                  "ContentField": "ReactComponent",
+                  "IndexRawValue": true,
+                  "Code": "\u003Cdiv class=\u0022react-root\u0022\u003E\u003C/div\u003E",
+                  "Resources": [
+                    {
+                      "At": 1,
+                      "Hash": "BDEBA4992A576ED6C4413FFD7E800094EC283A3CA0CA6922169138813011B6BC",
+                      "IsInline": false,
+                      "Src": "https://unpkg.com/react@18/umd/react.development.js",
+                      "Type": 0,
+                      "IsAsync": false,
+                      "IsDeferred": false,
+                      "ScriptType": ""
+                    },
+                    {
+                      "At": 1,
+                      "Hash": "B4B886D8DE59FE1F3E6C27E972880F98F4A6C8B0F02D4647B43AEC27C3B7FA42",
+                      "IsInline": false,
+                      "Src": "https://unpkg.com/react-dom@18/umd/react-dom.development.js",
+                      "Type": 0,
+                      "IsAsync": false,
+                      "IsDeferred": false,
+                      "ScriptType": ""
+                    },
+                    {
+                      "At": 1,
+                      "Hash": "0B5FDFBDEF7DC72BB36985E8421ECABBEBC0B7BE0B1F5BD127ECA4F04F62D30E",
+                      "IsInline": false,
+                      "Src": "https://unpkg.com/@emotion/react@11.11.4/dist/emotion-react.umd.min.js",
+                      "Type": 0,
+                      "IsAsync": false,
+                      "IsDeferred": false,
+                      "ScriptType": ""
+                    },
+                    {
+                      "At": 1,
+                      "Hash": "B94FD65A18F656942435BEAF74212C990AD96435DF1728B8E8390E4A38A1B65D",
+                      "IsInline": false,
+                      "Src": "https://unpkg.com/@emotion/styled@11.11.5/dist/emotion-styled.umd.min.js",
+                      "Type": 0,
+                      "IsAsync": false,
+                      "IsDeferred": false,
+                      "ScriptType": ""
+                    },
+                    {
+                      "At": 1,
+                      "Hash": "6481C7405BB8DE378FD5F1C9056CBC3254FCE80FA90A519F0EE1F54C5A0BF0FE",
+                      "IsInline": false,
+                      "Src": "https://unpkg.com/@mui/material@5.15.15/umd/material-ui.development.js",
+                      "Type": 0,
+                      "IsAsync": false,
+                      "IsDeferred": false,
+                      "ScriptType": ""
+                    },
+                    {
+                      "At": 1,
+                      "Hash": "6E390BCDB8EEA22D0E8529BE9550B474A2923976E55365E52EDBE01B000619BB",
+                      "IsInline": false,
+                      "Src": "https://unpkg.com/@babel/standalone/babel.min.js",
+                      "Type": 0,
+                      "IsAsync": false,
+                      "IsDeferred": false,
+                      "ScriptType": ""
+                    },
+                    {
+                      "At": 1,
+                      "Hash": "B7A7E532D98905EC984AD794F7EB24BE951A6AD95D21D02FB213051678B76E45",
+                      "IsInline": true,
+                      "Src": "const { useState, useEffect } = React;\r\nconst { Button, TextField, Container, Typography, Box } = MaterialUI;\r\n\r\n(function () {\r\n    const dynamicField = window.dynamicFields.DynamicFieldsExamples_ReactComponent_Value;\r\n\r\n    function App() {\r\n      const [name, setName] = useState(\u0022\u0022);\r\n      const [greeting, setGreeting] = useState(\u0022\u0022);\r\n\r\n      useEffect(() =\u003E {\r\n        function handleValueChange(object) {\r\n          setName(object?.name ?? \u0022Stranger\u0022);\r\n        }\r\n        dynamicField.addEventListener(\u0022value\u0022, handleValueChange, {init: true});\r\n        return () =\u003E {\r\n          dynamicField.removeEventListener(\u0022value\u0022, handleValueChange);\r\n        };\r\n      }, []); \r\n\r\n      const handleClick = () =\u003E {\r\n        setGreeting(\u0060Hello, ${name || \u0022Stranger\u0022}! \uD83D\uDC4B\u0060);\r\n        dynamicField.setValue({ name : name });\r\n      };\r\n\r\n      const handleChange = (e) =\u003E {\r\n        setName(e.target.value);\r\n        dynamicField.setValue({ name : e.target.value });\r\n      };\r\n\r\n        return (\r\n          \u003CContainer maxWidth=\u0022sm\u0022 sx={{ mt: 5, textAlign: \u0022center\u0022 }}\u003E\r\n            \u003CTypography variant=\u0022h4\u0022 gutterBottom\u003E\r\n              Simple React \u002B MUI Example\r\n            \u003C/Typography\u003E\r\n            \u003CBox sx={{ display: \u0022flex\u0022, flexDirection: \u0022column\u0022, gap: 2 }}\u003E\r\n              \u003CTextField\r\n                label=\u0022Enter your name\u0022\r\n                variant=\u0022outlined\u0022\r\n                value={name}\r\n                onChange={handleChange}\r\n              /\u003E\r\n              \u003CButton variant=\u0022contained\u0022 onClick={handleClick}\u003E\r\n                Greet Me\r\n              \u003C/Button\u003E\r\n              {greeting \u0026\u0026 (\r\n                \u003CTypography variant=\u0022h6\u0022 color=\u0022primary\u0022\u003E\r\n                  {greeting}\r\n                \u003C/Typography\u003E\r\n              )}\r\n            \u003C/Box\u003E\r\n          \u003C/Container\u003E\r\n        );\r\n      }\r\n\r\n    const root = ReactDOM.createRoot(dynamicField.querySelector(\u0022.react-root\u0022));\r\n    root.render(\u003CApp /\u003E);\r\n\r\n    addEventListener(\u0027value\u0027, (object) =\u003E {\r\n      /* your code */\r\n    }, {init: true});\r\n})();",
+                      "Type": 0,
+                      "IsAsync": false,
+                      "IsDeferred": false,
+                      "ScriptType": "text/babel"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "FieldName": "DynamicField",
+              "Name": "SelfContainedReactComponent",
+              "Settings": {
+                "ContentPartFieldSettings": {
+                  "DisplayName": "SelfContainedReactComponent"
+                },
+                "DynamicFieldSettings": {
+                  "ContentType": "DynamicFieldsExamples",
+                  "ContentField": "SelfContainedReactComponent",
+                  "IndexRawValue": true,
+                  "Code": "\u003Cmy-greeting\u003E\u003C/my-greeting\u003E\r\n\r\n\u003Cscript type=\u0022module\u0022\u003E\r\n  class MyGreeting extends HTMLElement {\r\n    constructor() {\r\n      super();\r\n      this.attachShadow({ mode: \u0027open\u0027 });\r\n    }\r\n\r\n    async connectedCallback() {\r\n      const React = await import(\u0027https://esm.sh/react@18.2.0\u0027);\r\n      const ReactDOMClient = await import(\u0027https://esm.sh/react-dom@18.2.0/client\u0027);\r\n\r\n      const { useState } = React;\r\n      const { createRoot } = ReactDOMClient;\r\n\r\n      function App() {\r\n        const [name, setName] = useState(\u0027\u0027);\r\n        const [greeting, setGreeting] = useState(\u0027\u0027);\r\n\r\n        const handleClick = () =\u003E setGreeting(\u0060Hello, ${name || \u0027Stranger\u0027}! \uD83D\uDC4B\u0060);\r\n\r\n        return React.createElement(\r\n          \u0027div\u0027,\r\n          { style: { textAlign: \u0027center\u0027, marginTop: \u002750px\u0027 } },\r\n          React.createElement(\u0027h2\u0027, null, \u0027Simple React Example\u0027),\r\n          React.createElement(\u0027input\u0027, {\r\n            placeholder: \u0027Enter your name\u0027,\r\n            value: name,\r\n            onInput: e =\u003E setName(e.target.value),\r\n            style: { padding: \u00278px\u0027, fontSize: \u002716px\u0027 }\r\n          }),\r\n          React.createElement(\r\n            \u0027button\u0027,\r\n            { onClick: handleClick, style: { marginLeft: \u00278px\u0027, padding: \u00278px 16px\u0027 } },\r\n            \u0027Greet Me\u0027\r\n          ),\r\n          greeting \u0026\u0026 React.createElement(\u0027p\u0027, { style: { color: \u0027blue\u0027, marginTop: \u002716px\u0027 } }, greeting)\r\n        );\r\n      }\r\n\r\n      const mountPoint = document.createElement(\u0027div\u0027);\r\n      this.shadowRoot.appendChild(mountPoint);\r\n      const root = createRoot(mountPoint);\r\n      root.render(React.createElement(App));\r\n    }\r\n  }\r\n\r\n  customElements.define(\u0027my-greeting\u0027, MyGreeting);\r\n\u003C/script\u003E",
+                  "Resources": []
+                }
+              }
+            },
+            {
+              "FieldName": "DynamicField",
+              "Name": "JsonEditor",
+              "Settings": {
+                "ContentPartFieldSettings": {
+                  "DisplayName": "JsonEditor"
+                },
+                "DynamicFieldSettings": {
+                  "ContentType": "DynamicFieldsExamples",
+                  "ContentField": "JsonEditor",
+                  "IndexRawValue": true,
+                  "Code": "\u003Cdiv class=\u0022w-100\u0022 style=\u0022overflow: auto; resize: vertical; height: 400px;\u0022\u003E\r\n\u003Cdiv class=\u0022jsoneditor h-100\u0022\u003E\u003C/div\u003E\r\n\u003C/div\u003E",
+                  "Resources": [
+                    {
+                      "At": 1,
+                      "Hash": "125E4F20A7F7E20A4D89722FDDC7548E6961FDEB6E858DBE275513A53BACA2C3",
+                      "IsInline": false,
+                      "Src": "https://cdn.jsdelivr.net/npm/jsoneditor@10.4.1/dist/jsoneditor.min.js",
+                      "Type": 0,
+                      "IsAsync": false,
+                      "IsDeferred": false,
+                      "ScriptType": ""
+                    },
+                    {
+                      "At": 2,
+                      "Hash": "5DB80873857DD92800FF6D3F95304966E0903600723A44A3B847B785D48BC888",
+                      "IsInline": false,
+                      "Src": "https://cdn.jsdelivr.net/npm/jsoneditor@10.4.1/dist/jsoneditor.min.css",
+                      "Type": 1
+                    },
+                    {
+                      "At": 1,
+                      "Hash": "3052FFA11B4C3F22B0E33BD9275BA8F36F8FC554B054026850C2AB5BDA5902DD",
+                      "IsInline": true,
+                      "Src": "(function () {\r\n  document.addEventListener(\u0027DOMContentLoaded\u0027, () =\u003E {\r\n    const {\r\n        setValue, \r\n        addEventListener, \r\n        querySelector\r\n    } = window.dynamicFields.DynamicFieldsExamples_JsonEditor_Value;\r\n    \r\n    const container = querySelector(\u0022.jsoneditor\u0022);\r\n    const options = {\r\n      mode: \u0027tree\u0027, // or \u0027code\u0027, \u0027form\u0027, etc.\r\n      onChange: function () {\r\n        try {\r\n          const json = editor.get();\r\n          setValue({ json : json});\r\n        } catch (err) {\r\n          console.error(\u0027Invalid JSON:\u0027, err);\r\n        }\r\n      }\r\n    };\r\n    const editor = new JSONEditor(container, options);\r\n\r\n    const initialJson = {\r\n      //\u0022Array\u0022: [1, 2, 3],\r\n      //\u0022Boolean\u0022: true,\r\n      //\u0022Null\u0022: null,\r\n      //\u0022Number\u0022: 123,\r\n      //\u0022Object\u0022: {\u0022a\u0022: \u0022b\u0022, \u0022c\u0022: \u0022d\u0022},\r\n      //\u0022String\u0022: \u0022Hello World\u0022\r\n    };\r\n    editor.set(initialJson);\r\n    \r\n    addEventListener(\u0027value\u0027, (object) =\u003E {\r\n      if (object?.json) {\r\n        editor.set(object?.json);\r\n      }\r\n    }, {init: true});\r\n  });\r\n})();",
+                      "Type": 0,
+                      "IsAsync": false,
+                      "IsDeferred": false,
+                      "ScriptType": ""
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

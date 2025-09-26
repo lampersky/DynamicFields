@@ -1,0 +1,51 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+	<TargetFramework>$(TargetFramework)</TargetFramework>
+	<ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <PropertyGroup>
+	<PackageId>Lampersky.DynamicFields</PackageId>
+	<Version>1.0.0</Version>
+	<Title>Lampersky Dynamic Fields</Title>
+	<Description>Dynamic field creation and management module for Orchard Core CMS - create and configure custom fields on the fly without redeploying</Description>
+	<PackageTags>OrchardCore;OrchardCoreCMS;ContentManagement;DynamicFields;CustomFields;CustomEditors;DynamicEditors</PackageTags>
+	<Authors>Lampersky (lampersky@gmail.com)</Authors>
+	<Copyright>Copyright © 2025, Lampersky</Copyright>
+	<RepositoryUrl>https://github.com/lampersky/DynamicFields</RepositoryUrl>
+	<PackageProjectUrl>https://github.com/lampersky/DynamicFields</PackageProjectUrl>
+	<PackageLicenseExpression>BSD-3-Clause</PackageLicenseExpression>
+	<IsPackable>true</IsPackable>
+	<PackageReadmeFile>readme.md</PackageReadmeFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+	<None Include="docs\readme.md" Pack="true" PackagePath="\"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<PackageReference Include="OrchardCore.Admin.Abstractions" Version="$(OrchardCoreVersion)" />
+	<PackageReference Include="OrchardCore.ContentLocalization.Abstractions" Version="$(OrchardCoreVersion)" />
+	<PackageReference Include="OrchardCore.ContentManagement.Abstractions" Version="$(OrchardCoreVersion)" />
+	<PackageReference Include="OrchardCore.ContentManagement.Display" Version="$(OrchardCoreVersion)" />
+	<PackageReference Include="OrchardCore.ContentManagement.GraphQL" Version="$(OrchardCoreVersion)" />
+	<PackageReference Include="OrchardCore.Contents" Version="$(OrchardCoreVersion)" />
+	<PackageReference Include="OrchardCore.Contents.TagHelpers" Version="$(OrchardCoreVersion)" />
+	<PackageReference Include="OrchardCore.ContentTypes.Abstractions" Version="$(OrchardCoreVersion)" />
+	<PackageReference Include="OrchardCore.Indexing.Abstractions" Version="$(OrchardCoreVersion)" />
+	<PackageReference Include="OrchardCore.Liquid.Abstractions" Version="$(OrchardCoreVersion)" />
+	<PackageReference Include="OrchardCore.Module.Targets" Version="$(OrchardCoreVersion)" />
+	<PackageReference Include="OrchardCore.Shortcodes.Abstractions" Version="$(OrchardCoreVersion)" />
+	<PackageReference Include="OrchardCore.ResourceManagement" Version="$(OrchardCoreVersion)" />
+	<PackageReference Include="OrchardCore.Users.Core" Version="$(OrchardCoreVersion)" />
+	<PackageReference Include="OrchardCore.ContentFields" Version="$(OrchardCoreVersion)" />
+  </ItemGroup>
+
+</Project>
+

@@ -1,0 +1,55 @@
+@model OrchardCore.DynamicFields.ViewModels.EditDynamicFieldViewModel
+@using OrchardCore.DynamicFields.Settings
+@using OrchardCore.Mvc.Utilities
+@using OrchardCore.ResourceManagement
+@{
+    var settings = Model.PartFieldDefinition.GetSettings<DynamicFieldSettings>();
+    var culture = await Orchard.GetContentCultureAsync(Model.Field.ContentItem);
+}
+
+<div class="@Orchard.GetFieldWrapperClasses(Model.PartFieldDefinition)" id="@Html.IdFor(x => x.Value)_FieldWrapper">
+    <label asp-for="Value" class="@Orchard.GetLabelClasses(inputRequired: false)">@Model.PartFieldDefinition.DisplayName()</label>
+    <div class="@Orchard.GetEndClasses()">
+        <span asp-validation-for="Value"></span>
+        <dynamic-fields asp-for="Value">
+            @Html.Raw(settings.Code)
+        </dynamic-fields>
+    </div>
+</div>
+
+<script asp-name="dynamic-fields" at="Head" asp-src="~/Lampersky.DynamicFields/Scripts/dynamic-fields.js"></script>
+<script at="Head" depends-on="dynamic-fields">
+    init(`@Html.IdFor(m => m.Value)`, `@Context.Request.PathBase.ToString()`, `@culture.GetLanguageDirection()`);
+</script>
+
+@foreach (var resource in settings.Resources)
+{
+    if (resource.IsInline)
+    {
+        <render-once key="@resource.Hash">
+            @if (resource.Type == ResourceType.Script)
+            {
+                <script depends-on="dynamic-fields" at="@resource.At" type="@resource.ScriptType" defer="@resource.IsDeferred" async="@resource.IsAsync" hash="@resource.Hash">
+                    @Html.Raw(resource.Src)
+                </script>
+            }
+            else if (resource.Type == ResourceType.Style)
+            {
+                <style at="@resource.At" hash="@resource.Hash">
+                    @Html.Raw(resource.Src)
+                </style>
+            }
+        </render-once>
+    }
+    else
+    {
+        if (resource.Type == ResourceType.Script)
+        {
+            <script depends-on="dynamic-fields" at="@resource.At" asp-src="@resource.Src" type="@resource.ScriptType" defer="@resource.IsDeferred" async="@resource.IsAsync" hash="@resource.Hash"></script>
+        }
+        else if (resource.Type == ResourceType.Style)
+        {
+            <style at="@resource.At" asp-src="@resource.Src" hash="@resource.Hash"></style>
+        }
+    }
+}

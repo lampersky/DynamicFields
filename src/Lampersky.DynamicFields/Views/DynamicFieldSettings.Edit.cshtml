@@ -1,0 +1,232 @@
+@using Microsoft.Extensions.Options
+@using OrchardCore.ContentManagement.Metadata
+@using OrchardCore.DynamicFields.Extensions
+@using OrchardCore.DynamicFields.Fields
+@using OrchardCore.DynamicFields.Services
+@using OrchardCore.DynamicFields.Settings
+@using OrchardCore.DynamicFields.ViewModels
+@using OrchardCore.ResourceManagement
+@model OrchardCore.DynamicFields.ViewModels.EditDynamicFieldSettingsViewModel
+@inject IContentDefinitionManager ContentDefinitionManager
+@inject IOptions<DynamicFieldsOptions> DynamicFieldsOptions
+
+@{
+	var preview = @Url.RouteUrl(new { area = "Lampersky.DynamicFields", controller = "Admin", action = "DynamicFieldPreview", 
+		contentType = Model.ContentType, contentField = Model.ContentField });
+	var fieldId = $"{Model.ContentType}_{Model.ContentField}_Value";
+	var localDynamicFields = await ContentDefinitionManager.ListContentTypesWithFieldsNamesOfTypeAsync<DynamicField>();
+
+	var repositoryUrls = DynamicFieldsOptions.Value.RepositoryUrls;
+}
+
+@if (Context.Request.Query.ContainsKey("contentType") && Context.Request.Query.ContainsKey("contentField") && !Model.FetchOrLoadFailed)
+{
+	if (!Model.FetchOrLoadFailed)
+	{
+		<div class="alert alert-warning alert-dismissible fade show" role="alert">
+			@T["The DynamicField configuration was copied from the '{1}' field of the '{0}' content type. Don't forget to save your changes.", Context.Request.Query["contentType"], Context.Request.Query["contentField"]]<br />
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="@T["Close"]"></button>
+		</div>
+	}
+	else
+	{
+		<div class="alert alert-danger alert-dismissible fade show" role="alert">
+			@T["Can't copy configuration from the '{1}' field of the '{0}' content type.", Context.Request.Query["contentType"], Context.Request.Query["contentField"]]<br />
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="@T["Close"]"></button>
+		</div>
+	}
+}
+else if (Context.Request.Query.ContainsKey("url"))
+{
+	if (!Model.FetchOrLoadFailed)
+	{
+		<div class="alert alert-warning alert-dismissible fade show" role="alert">
+			@T["The DynamicField configuration was fetched from the '{0}'. Don't forget to save your changes.", Context.Request.Query["url"]]<br />
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="@T["Close"]"></button>
+		</div>
+	}
+	else
+	{
+		<div class="alert alert-danger alert-dismissible fade show" role="alert">
+			@T["Can't fetch configuration from the '{0}'.", Context.Request.Query["url"]]<br />
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="@T["Close"]"></button>
+		</div>
+	}
+}
+
+@if (localDynamicFields.Count > 0 || repositoryUrls.Count > 0)
+{
+    <div class="mb-3">
+        <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#contentTypesWithDynamicFieldsModal">
+            @T["Copy existing field configuration"]
+        </button>
+        <div class="modal fade" id="contentTypesWithDynamicFieldsModal" tabindex="-1" aria-labelledby="contentTypesWithDynamicFieldsModalTitle">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="contentTypesWithDynamicFieldsModalTitle">@T["Copy existing configuration"]</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="@T["Close"]"></button>
+                    </div>
+                    <div class="modal-body">
+						<div class="alert alert-info" role="alert">
+                            @T["If you have already configured the dynamic field, your changes will be lost!"]
+                        </div>
+
+
+						@if (localDynamicFields.Count > 0 && repositoryUrls.Count > 0)
+						{
+							<ul class="nav nav-tabs" id="myTab" role="tablist">
+								<li class="nav-item" role="presentation">
+									<a class="nav-link active" id="copy-tab" data-bs-toggle="tab" href="#copy" role="tab" aria-controls="copy" aria-selected="true">@T["Local"]</a>
+								</li>
+								<li class="nav-item" role="presentation">
+									<a class="nav-link" id="fetch-tab" data-bs-toggle="tab" href="#fetch" role="tab" aria-controls="fetch" aria-selected="false">@T["Remote"]</a>
+								</li>
+							</ul>
+						}
+
+						<div class="tab-content" id="myTabContent">
+							<div class="tab-pane fade @(localDynamicFields.Count > 0 ? "show active" : "") pb-3" id="copy" role="tabpanel" aria-labelledby="copy-tab">
+								<div>
+									<div>@T["Choose the field configuration you want to copy from:"]</div>
+									<div class="d-flex flex-column gap-6">
+										@foreach (var item in localDynamicFields)
+										{
+											@foreach (var fieldName in item.Value)
+											{
+												<a href="?contentType=@(item.Key)&contentField=@(fieldName)">@(item.Key).@(fieldName)</a>
+											}
+										}
+									</div>
+								</div>
+							</div>
+							<div class="tab-pane fade @(localDynamicFields.Count == 0 && repositoryUrls.Count > 0 ? "show active" : "") pb-3" id="fetch" role="tabpanel" aria-labelledby="fetch-tab">
+								<select class="form-select" aria-label="@T["Choose repository"]" onchange="handleRepositoryChange(this)">
+									<option selected disabled>@T["Choose repository"]</option>
+									@foreach (var repositoryUrl in repositoryUrls)
+									{
+										<option value="@repositoryUrl">@repositoryUrl</option>
+									}
+								</select>
+								<div class="d-flex flex-column gap-6 mt-3" data-fetch-failed="@T["Unable to fetch the specified URL!"]"></div>
+							</div>
+						</div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">@T["Close"]</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="mb-3">
+    <a class="btn btn-sm btn-outline-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+        @T["Do you need help?"]
+    </a>
+
+    <div class="collapse mt-3" id="collapseExample">
+        <div class="alert alert-info" role="alert">
+            <pre class="mb-0">
+(function () {
+  document.addEventListener('DOMContentLoaded', () => {
+    /* available functions */
+    const {
+        getValue, 
+        setValue, 
+        addEventListener, 
+        querySelector, 
+        closest,
+        getPathBase,
+        getLangDir
+    } = window.dynamicFields.@(Html.IdFor(m => m).Replace(nameof(DynamicFieldSettingsDisplayDriver), "Value"));
+
+    addEventListener('value', (object) => {
+      /* your code */
+    }, {init: true});
+  });
+})();
+            </pre>
+        </div>
+    </div>
+</div>
+
+<div class="mb-3">
+    <div class="form-check">
+        <input asp-for="IndexRawValue" type="checkbox" class="form-check-input">
+        <label class="form-check-label" asp-for="IndexRawValue">@T["Index RAW Value"]</label>
+        <span class="hint dashed">@T["Whether a raw JSON value is indexed (without flattening)."]</span>
+    </div>
+</div>
+
+<div class="mb-3">
+    <div class="w-100">
+        <label asp-for="Code" class="form-label">@T["Code"]</label>
+        <div class="code-wrapper">
+            <textarea asp-for="Code" rows="2" class="form-control"></textarea>
+            <button type="button" class="btn btn-sm btn-primary" onclick="openExternalEditor(this.previousElementSibling, event)">@T["Open editor"]</button>
+        </div>
+    </div>
+    <span class="hint">@T["The component code."]</span>
+</div>
+
+<template id="resource-template">
+    @{
+        /* variable name Capitalized intentionally */
+        /* we are using dict, because binder do not allow gaps in lists */
+        Dictionary<int, Resource> Resources = new() { { 0, new Resource() } };
+    }
+    @Html.EditorFor(_ => Resources[0])
+</template>
+
+<div class="mb-3">
+    <div class="d-flex align-items-baseline gap-1">
+        <div class="form-label">@T["Resources"]</div>
+        <button type="button" class="btn btn-link p-0" onclick="addResource()">
+            <i class="fa fa-plus-circle"></i>
+        </button>
+    </div>
+    <div class="resources">
+        @if (Model.Resources.Any())
+        {
+            @foreach (var kvp in Model.Resources.OrderBy(x => x.Key))
+            {
+                @Html.EditorFor(m => Model.Resources[kvp.Key])
+            }
+        }
+    </div>
+    <span class="badge text-bg-warning no-resources">@T["No resources have been added yet!"]</span>
+</div>
+
+<div class="mb-3">
+    <div class="card text-center">
+        <div class="card-header">
+            @T["DynamicField Preview"]
+        </div>
+        <div class="card-body">
+            <div class="preview-box d-flex flex-column flex-md-row gap-3">
+                <div class="iframe-box p-3 w-100 w-md-75 border border-primary rounded flex-fill d-flex">
+                    <iframe name="previewFrame" class="w-100 h-100 border-0 rounded"></iframe>
+                </div>
+                <div class="console-box p-3 w-100 w-md-25 border border-success rounded d-flex flex-column text-start">
+                    <h5 class="card-title">@T["Log"]</h5>
+                    <p class="card-text">@T["Please make sure there are no errors in console, when interacting with your dynamic editor!"]</p>
+                    <div class="fake-console flex-fill text-wrap">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer text-body-secondary">
+            <input type="submit" value="@T["Refresh"]" name="preview" formaction="@preview" formtarget="previewFrame" />
+            <input type="button" value="@T["Clear"]" onclick="clearFakeConsole()" />
+            <input type="button" value="@T["Save State"]" onclick="saveState('@fieldId')" />
+            <input type="button" value="@T["Restore State"]" onclick="restoreState('@fieldId')" />
+        </div>
+    </div>
+</div>
+
+<partial name="CodeEditorModal" />
+<style asp-name="dynamic-fields" at="Head" asp-src="~/Lampersky.DynamicFields/Styles/dynamic-fields-settings.css"></style>
+<script asp-name="dynamic-fields" at="Foot" asp-src="~/Lampersky.DynamicFields/Scripts/dynamic-fields-settings.js" depends-on="codemirror"></script>

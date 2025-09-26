@@ -1,0 +1,39 @@
+@using OrchardCore.ContentManagement.Metadata.Builders
+@using OrchardCore.DynamicFields.Extensions
+@using OrchardCore.DynamicFields.Fields
+@using OrchardCore.DynamicFields.Services
+@using OrchardCore.DynamicFields.Settings
+@using OrchardCore.DynamicFields.ViewModels
+@inject PreviewDynamicFieldService PreviewDynamicFieldService
+@model DynamicFieldPreviewViewModel
+
+@{
+    /* todo: create admin layout without nav & top bar, for now let's hide */
+    //Layout = "Layout__Login";
+}
+
+<style at="Foot" depends-on="TheAdminLayout">
+    .ta-navbar-top {
+        display: none;
+    }
+    #ta-left-sidebar {
+        display: none !important;
+    }
+    [dir="ltr"] .ta-content {
+        margin-left: 0 !important;
+    }
+    .ta-content {
+        padding-top: 1rem;
+    }
+</style>
+
+@{
+    var contentTypeDefinition = new ContentTypeDefinitionBuilder().BuildFakeContentTypeDefinition<DynamicField, DynamicFieldSettings>("FakeContentType",
+        Model.ContentPart,
+        Model.ContentField,
+        Model.Settings);
+
+    var shape = await PreviewDynamicFieldService.BuildFieldEditorAsync(contentTypeDefinition);
+}
+
+@await DisplayAsync(shape)

@@ -1,0 +1,6 @@
+<Project>
+  <PropertyGroup>
+    <OrchardCoreVersion>2.2.0</OrchardCoreVersion>
+    <TargetFramework>net8.0</TargetFramework>
+  </PropertyGroup>
+</Project>

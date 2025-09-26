@@ -1,0 +1,59 @@
+@model OrchardCore.DynamicFields.ViewModels.DisplayDynamicFieldViewModel
+@using OrchardCore.Mvc.Utilities
+@using System.Collections
+
+@{
+    var name = (Model.PartFieldDefinition.PartDefinition.Name + "-" + Model.PartFieldDefinition.Name).HtmlClassify();
+}
+
+@functions {
+    void RenderRecursive(object value)
+    {
+        if (value is IDictionary<string, object> dict)
+        {
+            <ul>
+                @foreach (var kvp in dict)
+                {
+                    <li>
+                        <strong>@kvp.Key:</strong>
+                        @{
+                            RenderRecursive(kvp.Value);
+                        }
+                    </li>
+                }
+            </ul>
+        }
+        else if (value is IEnumerable enumerable && value is not string)
+        {
+            <ul>
+                @foreach (var item in enumerable)
+                {
+                    <li>
+                        @{
+                            RenderRecursive(item);
+                        }
+                    </li>
+                }
+            </ul>
+        }
+        else
+        {
+            @value
+        }
+    }
+}
+
+<div class="field field-type-dynamicfield field-name-@name">
+    <div>
+        @if (Model.Value != null)
+        {
+            RenderRecursive(Model.Value);
+        }
+        else
+        {
+            <pre>
+                @Html.Raw(Model.RawValue)
+            </pre>
+        }
+    </div>
+</div>

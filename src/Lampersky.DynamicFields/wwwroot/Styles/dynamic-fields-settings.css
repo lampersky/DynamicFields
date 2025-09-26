@@ -1,0 +1,105 @@
+.resources .resource button.add {
+    display: none;
+}
+
+.resources .resource:last-child button.add {
+    display: initial;
+}
+
+/*.resources:has(> :only-child) button.remove {
+    display: none;
+}*/
+
+.resources .resource:last-child button.down, .resources .resource:first-child button.up {
+    opacity: 0.5;
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+.single-line-textarea {
+    overflow: hidden;
+    resize: none;
+    height: auto;
+    white-space: nowrap;
+}
+
+.resources:has(.resource) ~ .no-resources {
+    display: none;
+}
+
+.fake-console .log {
+    color: blue;
+}
+.fake-console .warn {
+    color: green;
+}
+.fake-console .error {
+    color: orangered;
+}
+.fake-console .critical {
+    color: red;
+}
+
+.fake-console {
+    overflow: auto;
+    max-height: 200px;
+}
+
+.preview-box {
+    display: flex;
+    flex-direction: column;
+    resize: vertical;
+    overflow: auto;
+}
+
+.iframe-box {
+    resize: none;
+    overflow: auto;
+    min-height: 100px;
+}
+
+.console-box {
+    height: auto;
+}
+
+@media (min-width: 768px) {
+    .fake-console {
+        height: 100%;
+        max-height: 100%;
+    }
+    .preview-box {
+        flex-direction: row;
+        resize: vertical;
+        height: 600px;
+    }
+
+    .iframe-box,
+    .console-box {
+        resize: none;
+        height: 100%;
+    }
+}
+
+.code-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.code-wrapper button {
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    display: none;
+    z-index: 10;
+}
+
+.code-wrapper:focus-within button {
+    display: inline-block;
+}

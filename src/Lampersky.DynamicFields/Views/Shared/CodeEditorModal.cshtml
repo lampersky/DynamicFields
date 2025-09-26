@@ -1,0 +1,25 @@
+<div class="modal fade" id="codeEditorModal" tabindex="-1">
+    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">@T["Editor"]</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="@T["Close"]"></button>
+            </div>
+            <div class="modal-body p-0">
+                <textarea id="codeMirrorEditor"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">@T["Close"]</button>
+                <button type="button" class="btn btn-success" data-bs-dismiss="modal">@T["Save"]</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style asp-name="codemirror"></style>
+<script asp-name="codemirror" at="Foot"></script>
+<script asp-name="codemirror-addon-display-autorefresh" at="Foot"></script>
+<script asp-name="codemirror-mode-javascript" at="Foot"></script>
+<script asp-name="codemirror-mode-css" at="Foot"></script>
+<script asp-name="codemirror-mode-htmlmixed" at="Foot"></script>
+<script asp-name="codemirror-mode-xml" at="Foot"></script>
