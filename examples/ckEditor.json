@@ -16,9 +16,9 @@
         },
         {
             "At": 1,
-            "Hash": "FC27474663D343270EAD5CA326943A99D8522FA93AF855E26FDEB9315360925B",
+            "Hash": "DEFF1966CAD4E7C0BA55B8E1DA95520D31C2606076102A494AAA5295E23D18DA",
             "IsInline": true,
-            "Src": "(function () {\r\n  document.addEventListener('DOMContentLoaded', () => {\r\n    const {\r\n        getValue, \r\n        setValue, \r\n        addEventListener, \r\n        querySelector\r\n    } = window.dynamicFields.DynamicFieldsExamples_CkEditor_Value;\r\n\r\n    const editorElement = querySelector('.editor');\r\n    const ckEditor = CKEDITOR.replace(editorElement);\r\n    ckEditor.on('change', function () {\r\n      let content = CKEDITOR.instances.editor.getData();\r\n      console.log(\"Editor changed\");\r\n      setValue({ content: content })\r\n    });\r\n    \r\n    addEventListener('value', (object) => {\r\n      if (object?.content) {\r\n        ckEditor.setData(object?.content);\r\n      }\r\n    }, {init: true});\r\n  });\r\n})();",
+            "Src": "(function () {\r\n  document.addEventListener('DOMContentLoaded', () => {\r\n    const {\r\n        getValue, \r\n        setValue, \r\n        addEventListener, \r\n        querySelector\r\n    } = window.dynamicFields.DynamicFieldsExamples_CkEditor_Value;\r\n\r\n    const editorElement = querySelector('.editor');\r\n    const ckEditor = CKEDITOR.replace(editorElement);\r\n    ckEditor.on('change', function () {\r\n      let content = ckEditor.getData();\r\n      console.log(\"Editor changed\");\r\n      setValue({ content: content })\r\n    });\r\n    \r\n    addEventListener('value', (object) => {\r\n      if (object?.content) {\r\n        ckEditor.setData(object?.content);\r\n      }\r\n    }, {init: true});\r\n  });\r\n})();",
             "Type": 0,
             "IsAsync": false,
             "IsDeferred": false,
