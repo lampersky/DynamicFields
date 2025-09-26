@@ -1,0 +1,28 @@
+{
+    "ContentType": "DynamicFieldsExamples",
+    "ContentField": "SimpleImageGallery",
+    "IndexRawValue": true,
+    "Code": "<simple-image-gallery></simple-image-gallery>",
+    "Resources": [
+        {
+            "At": 2,
+            "Hash": "1BB11E9DB170D7509AE7C900E5B6219D5A03D58C1CD192F9E3E12C9BDC375CB0",
+            "IsInline": false,
+            "Src": "https://lampersky.github.io/DynamicFields/js/simple-image-gallery.min.js",
+            "Type": 0,
+            "IsAsync": false,
+            "IsDeferred": false,
+            "ScriptType": ""
+        },
+        {
+            "At": 1,
+            "Hash": "C7B5BE31C28EEAC9D0FDA8D4FD6A7B6B1228FFD2AE79D4CFA266AE8CF804CC8B",
+            "IsInline": true,
+            "Src": "(function () {\r\n  document.addEventListener('DOMContentLoaded', () => {\r\n    const {\r\n        getValue, \r\n        setValue, \r\n        addEventListener, \r\n        querySelector,\r\n        notify\r\n    } = window.dynamicFields.DynamicFieldsExamples_SimpleImageGallery_Value;\r\n\r\n    const gallery = querySelector('simple-image-gallery');\r\n    gallery.onChange = (object) => {\r\n      setValue(object);\r\n      notify();\r\n    };\r\n\r\n    addEventListener('value', (object) => {\r\n        console.log(object);\r\n        if (object?.src) {\r\n            gallery.setImage(object?.src);\r\n        }\r\n    }, {init: true});\r\n  });\r\n})();\r\n",
+            "Type": 0,
+            "IsAsync": false,
+            "IsDeferred": false,
+            "ScriptType": ""
+        }
+    ]
+}

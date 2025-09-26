@@ -1,0 +1,18 @@
+{
+    "ContentType": "DynamicFieldsExamples",
+    "ContentField": "GeoCoordinates",
+    "IndexRawValue": true,
+    "Code": "<geo-coordinates></geo-coordinates>",
+    "Resources": [
+        {
+            "At": 1,
+            "Hash": "CBC8D5CBD958F12E88A2918167DA02CACE4FE77358F2E9A76973B1D810C4ECCF",
+            "IsInline": false,
+            "Src": "https://lampersky.github.io/DynamicFields/js/geo-coordinates.min.js",
+            "Type": 0,
+            "IsAsync": false,
+            "IsDeferred": false,
+            "ScriptType": ""
+        }
+    ]
+}

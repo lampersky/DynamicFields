@@ -1,0 +1,35 @@
+{
+    "ContentType": "DynamicFieldsExamples",
+    "ContentField": "JsonEditor",
+    "IndexRawValue": true,
+    "Code": "<div class=\"w-100\" style=\"overflow: auto; resize: vertical; height: 400px;\">\r\n<div class=\"jsoneditor h-100\"></div>\r\n</div>",
+    "Resources": [
+        {
+            "At": 1,
+            "Hash": "125E4F20A7F7E20A4D89722FDDC7548E6961FDEB6E858DBE275513A53BACA2C3",
+            "IsInline": false,
+            "Src": "https://cdn.jsdelivr.net/npm/jsoneditor@10.4.1/dist/jsoneditor.min.js",
+            "Type": 0,
+            "IsAsync": false,
+            "IsDeferred": false,
+            "ScriptType": ""
+        },
+        {
+            "At": 2,
+            "Hash": "5DB80873857DD92800FF6D3F95304966E0903600723A44A3B847B785D48BC888",
+            "IsInline": false,
+            "Src": "https://cdn.jsdelivr.net/npm/jsoneditor@10.4.1/dist/jsoneditor.min.css",
+            "Type": 1
+        },
+        {
+            "At": 1,
+            "Hash": "3052FFA11B4C3F22B0E33BD9275BA8F36F8FC554B054026850C2AB5BDA5902DD",
+            "IsInline": true,
+            "Src": "(function () {\r\n  document.addEventListener('DOMContentLoaded', () => {\r\n    const {\r\n        setValue, \r\n        addEventListener, \r\n        querySelector\r\n    } = window.dynamicFields.DynamicFieldsExamples_JsonEditor_Value;\r\n    \r\n    const container = querySelector(\".jsoneditor\");\r\n    const options = {\r\n      mode: 'tree', // or 'code', 'form', etc.\r\n      onChange: function () {\r\n        try {\r\n          const json = editor.get();\r\n          setValue({ json : json});\r\n        } catch (err) {\r\n          console.error('Invalid JSON:', err);\r\n        }\r\n      }\r\n    };\r\n    const editor = new JSONEditor(container, options);\r\n\r\n    const initialJson = {\r\n      //\"Array\": [1, 2, 3],\r\n      //\"Boolean\": true,\r\n      //\"Null\": null,\r\n      //\"Number\": 123,\r\n      //\"Object\": {\"a\": \"b\", \"c\": \"d\"},\r\n      //\"String\": \"Hello World\"\r\n    };\r\n    editor.set(initialJson);\r\n    \r\n    addEventListener('value', (object) => {\r\n      if (object?.json) {\r\n        editor.set(object?.json);\r\n      }\r\n    }, {init: true});\r\n  });\r\n})();",
+            "Type": 0,
+            "IsAsync": false,
+            "IsDeferred": false,
+            "ScriptType": ""
+        }
+    ]
+}

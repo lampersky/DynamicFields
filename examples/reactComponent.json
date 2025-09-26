@@ -1,0 +1,78 @@
+{
+    "ContentType": "DynamicFieldsExamples",
+    "ContentField": "ReactComponent",
+    "IndexRawValue": true,
+    "Code": "<div class=\"react-root\"></div>",
+    "Resources": [
+        {
+            "At": 1,
+            "Hash": "BDEBA4992A576ED6C4413FFD7E800094EC283A3CA0CA6922169138813011B6BC",
+            "IsInline": false,
+            "Src": "https://unpkg.com/react@18/umd/react.development.js",
+            "Type": 0,
+            "IsAsync": false,
+            "IsDeferred": false,
+            "ScriptType": ""
+        },
+        {
+            "At": 1,
+            "Hash": "B4B886D8DE59FE1F3E6C27E972880F98F4A6C8B0F02D4647B43AEC27C3B7FA42",
+            "IsInline": false,
+            "Src": "https://unpkg.com/react-dom@18/umd/react-dom.development.js",
+            "Type": 0,
+            "IsAsync": false,
+            "IsDeferred": false,
+            "ScriptType": ""
+        },
+        {
+            "At": 1,
+            "Hash": "0B5FDFBDEF7DC72BB36985E8421ECABBEBC0B7BE0B1F5BD127ECA4F04F62D30E",
+            "IsInline": false,
+            "Src": "https://unpkg.com/@emotion/react@11.11.4/dist/emotion-react.umd.min.js",
+            "Type": 0,
+            "IsAsync": false,
+            "IsDeferred": false,
+            "ScriptType": ""
+        },
+        {
+            "At": 1,
+            "Hash": "B94FD65A18F656942435BEAF74212C990AD96435DF1728B8E8390E4A38A1B65D",
+            "IsInline": false,
+            "Src": "https://unpkg.com/@emotion/styled@11.11.5/dist/emotion-styled.umd.min.js",
+            "Type": 0,
+            "IsAsync": false,
+            "IsDeferred": false,
+            "ScriptType": ""
+        },
+        {
+            "At": 1,
+            "Hash": "6481C7405BB8DE378FD5F1C9056CBC3254FCE80FA90A519F0EE1F54C5A0BF0FE",
+            "IsInline": false,
+            "Src": "https://unpkg.com/@mui/material@5.15.15/umd/material-ui.development.js",
+            "Type": 0,
+            "IsAsync": false,
+            "IsDeferred": false,
+            "ScriptType": ""
+        },
+        {
+            "At": 1,
+            "Hash": "6E390BCDB8EEA22D0E8529BE9550B474A2923976E55365E52EDBE01B000619BB",
+            "IsInline": false,
+            "Src": "https://unpkg.com/@babel/standalone/babel.min.js",
+            "Type": 0,
+            "IsAsync": false,
+            "IsDeferred": false,
+            "ScriptType": ""
+        },
+        {
+            "At": 1,
+            "Hash": "B7A7E532D98905EC984AD794F7EB24BE951A6AD95D21D02FB213051678B76E45",
+            "IsInline": true,
+            "Src": "const { useState, useEffect } = React;\r\nconst { Button, TextField, Container, Typography, Box } = MaterialUI;\r\n\r\n(function () {\r\n    const dynamicField = window.dynamicFields.DynamicFieldsExamples_ReactComponent_Value;\r\n\r\n    function App() {\r\n      const [name, setName] = useState(\"\");\r\n      const [greeting, setGreeting] = useState(\"\");\r\n\r\n      useEffect(() => {\r\n        function handleValueChange(object) {\r\n          setName(object?.name ?? \"Stranger\");\r\n        }\r\n        dynamicField.addEventListener(\"value\", handleValueChange, {init: true});\r\n        return () => {\r\n          dynamicField.removeEventListener(\"value\", handleValueChange);\r\n        };\r\n      }, []); \r\n\r\n      const handleClick = () => {\r\n        setGreeting(`Hello, ${name || \"Stranger\"}! 👋`);\r\n        dynamicField.setValue({ name : name });\r\n      };\r\n\r\n      const handleChange = (e) => {\r\n        setName(e.target.value);\r\n        dynamicField.setValue({ name : e.target.value });\r\n      };\r\n\r\n        return (\r\n          <Container maxWidth=\"sm\" sx={{ mt: 5, textAlign: \"center\" }}>\r\n            <Typography variant=\"h4\" gutterBottom>\r\n              Simple React + MUI Example\r\n            </Typography>\r\n            <Box sx={{ display: \"flex\", flexDirection: \"column\", gap: 2 }}>\r\n              <TextField\r\n                label=\"Enter your name\"\r\n                variant=\"outlined\"\r\n                value={name}\r\n                onChange={handleChange}\r\n              />\r\n              <Button variant=\"contained\" onClick={handleClick}>\r\n                Greet Me\r\n              </Button>\r\n              {greeting && (\r\n                <Typography variant=\"h6\" color=\"primary\">\r\n                  {greeting}\r\n                </Typography>\r\n              )}\r\n            </Box>\r\n          </Container>\r\n        );\r\n      }\r\n\r\n    const root = ReactDOM.createRoot(dynamicField.querySelector(\".react-root\"));\r\n    root.render(<App />);\r\n\r\n    addEventListener('value', (object) => {\r\n      /* your code */\r\n    }, {init: true});\r\n})();",
+            "Type": 0,
+            "IsAsync": false,
+            "IsDeferred": false,
+            "ScriptType": "text/babel"
+        }
+    ]
+}

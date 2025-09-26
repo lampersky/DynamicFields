@@ -1,0 +1,35 @@
+{
+    "ContentType": "DynamicFieldsExamples",
+    "ContentField": "ColorisJs",
+    "IndexRawValue": true,
+    "Code": "<input type=\"text\" data-coloris>",
+    "Resources": [
+        {
+            "At": 1,
+            "Hash": "74739D333123CC72CAEA81D9C71D5F37069EF0DA299F46519CD27B4EDCA2D815",
+            "IsInline": false,
+            "Src": "https://cdn.jsdelivr.net/gh/mdbassit/Coloris@latest/dist/coloris.min.css",
+            "Type": 1
+        },
+        {
+            "At": 1,
+            "Hash": "3FFBC8EF01B39579AEED61C2EA350B2B1C25DF7A8435010D4A3619F9BEC8EA67",
+            "IsInline": false,
+            "Src": "https://cdn.jsdelivr.net/gh/mdbassit/Coloris@latest/dist/coloris.min.js",
+            "Type": 0,
+            "IsAsync": false,
+            "IsDeferred": false,
+            "ScriptType": ""
+        },
+        {
+            "At": 1,
+            "Hash": "7233700E4C3053849AA7335827AB2B32C7401AB64FEE79BBBBA4434F340E16C1",
+            "IsInline": true,
+            "Src": "(function () {\r\n    const {\r\n        setValue, \r\n        addEventListener, \r\n        querySelector,\r\n        getParentId\r\n    } = window.dynamicFields.DynamicFieldsExamples_ColorisJs_Value;\r\n\r\n    const coloris = querySelector('input[data-coloris]');\r\n    coloris.id = `${getParentId()}_coloris`;\r\n    \r\n    coloris.addEventListener('input', event => {\r\n        if (event.target.value === \"\") {\r\n            setValue({ color: null});\r\n        } else {\r\n            setValue({ color: event.target.value});\r\n        }\r\n    });\r\n\r\n    addEventListener('value', (object) => {\r\n        coloris.value = object?.color;\r\n    }, {init: true});\r\n})();",
+            "Type": 0,
+            "IsAsync": false,
+            "IsDeferred": false,
+            "ScriptType": ""
+        }
+    ]
+}

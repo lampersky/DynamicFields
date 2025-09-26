@@ -1,0 +1,35 @@
+{
+    "ContentType": "DynamicFieldsExamples",
+    "ContentField": "FullCalendar",
+    "IndexRawValue": true,
+    "Code": "<div class=\"d-flex gap-1 justify-content-evenly\">\r\n<div class='external-events'>\r\n  <p>\r\n    <strong>Draggable Events</strong>\r\n  </p>\r\n\r\n  <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>\r\n    <div class='fc-event-main'>My Event 1</div>\r\n  </div>\r\n  <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>\r\n    <div class='fc-event-main'>My Event 2</div>\r\n  </div>\r\n  <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>\r\n    <div class='fc-event-main'>My Event 3</div>\r\n  </div>\r\n  <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>\r\n    <div class='fc-event-main'>My Event 4</div>\r\n  </div>\r\n  <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>\r\n    <div class='fc-event-main'>My Event 5</div>\r\n  </div>\r\n\r\n  <p>\r\n  <label>\r\n    <input type=\"checkbox\" class=\"drop-remove\" />\r\n    remove after drop\r\n  </label>\r\n  </p>\r\n</div>\r\n\r\n<div class=\"d-flex h-100\">\r\n  <div class='calendar'></div>\r\n</div>\r\n</div>",
+    "Resources": [
+        {
+            "At": 2,
+            "Hash": "579B6C4A5610600EFF580B72E94BFCA912B6771EE589DDF942A4B045E2B31E9F",
+            "IsInline": false,
+            "Src": "https://cdn.jsdelivr.net/npm/fullcalendar@6.1.19/index.global.min.js",
+            "Type": 0,
+            "IsAsync": false,
+            "IsDeferred": false,
+            "ScriptType": ""
+        },
+        {
+            "At": 2,
+            "Hash": "FEA6B6A4DF179C87406C1802D45EC70503E800402736D08C3513A695D979D62C",
+            "IsInline": true,
+            "Src": ".external-events {\r\n  padding: 0 10px;\r\n  border: 1px solid #ccc;\r\n  background: #eee;\r\n}\r\n\r\n.external-events .fc-event {\r\n  cursor: move;\r\n  margin: 3px 0;\r\n}\r\n\r\n.calendar {\r\n  margin: 20px auto;\r\n}",
+            "Type": 1
+        },
+        {
+            "At": 1,
+            "Hash": "382379D487823D5F9C7549E3ED6D892174053F5E069FEA6E42BEE52DBA8E27C5",
+            "IsInline": true,
+            "Src": "(function () {\r\n  document.addEventListener('DOMContentLoaded', () => {\r\n    /* available functions */\r\n    const {\r\n        getValue, \r\n        setValue, \r\n        addEventListener, \r\n        querySelector\r\n    } = window.dynamicFields.DynamicFieldsExamples_FullCalendar_Value;\r\n    \r\n    var Calendar = FullCalendar.Calendar;\r\n    var Draggable = FullCalendar.Draggable;\r\n\r\n    var containerEl = querySelector('.external-events');\r\n    var calendarEl = querySelector('.calendar');\r\n    var checkbox = querySelector('.drop-remove');\r\n\r\n    // initialize the external events\r\n    // -----------------------------------------------------------------\r\n\r\n    new Draggable(containerEl, {\r\n      itemSelector: '.fc-event',\r\n      eventData: function(eventEl) {\r\n        return {\r\n          title: eventEl.innerText\r\n        };\r\n      }\r\n    });\r\n\r\n    // initialize the calendar\r\n    // -----------------------------------------------------------------\r\n\r\n    var internalChange = false;\r\n    \r\n    var calendar = new Calendar(calendarEl, {\r\n      headerToolbar: {\r\n        left: 'prev,next today',\r\n        center: 'title',\r\n        right: 'dayGridMonth,timeGridWeek,timeGridDay'\r\n      },\r\n      editable: true,\r\n      droppable: true, // this allows things to be dropped onto the calendar\r\n      drop: (event) => {\r\n        // is the \"remove after drop\" checkbox checked?\r\n        if (checkbox.checked) {\r\n          // if so, remove the element from the \"Draggable Events\" list\r\n          event.draggedEl.parentNode.removeChild(event.draggedEl);\r\n        }\r\n        setTimeout(() => {\r\n          console.log('Event droped');\r\n\t\t  setValue({events : calendar.getEvents()});\r\n        }, 0);\r\n      },\r\n      eventAdd: (info) => {\r\n        if (!internalChange) {\r\n          console.log('Event added');\r\n          setValue({events : calendar.getEvents()});\r\n        }\r\n      },\r\n      eventChange: (info) => {\r\n        console.log('Event changed');\r\n        setValue({events : calendar.getEvents()});\r\n      },\r\n      eventRemove: (info) => {\r\n        console.log('Event removed');\r\n        setValue({events : calendar.getEvents()});\r\n      }\r\n    });\r\n\r\n    addEventListener('value', (object) => {\r\n      calendar.removeAllEvents();\r\n\t  internalChange = true;\r\n      object?.events?.forEach(ev => calendar.addEvent(ev));\r\n      internalChange = false;\r\n      calendar.render();\r\n    }, {init: true});\r\n  });\r\n})();",
+            "Type": 0,
+            "IsAsync": false,
+            "IsDeferred": false,
+            "ScriptType": ""
+        }
+    ]
+}

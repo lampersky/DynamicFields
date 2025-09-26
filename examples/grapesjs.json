@@ -1,0 +1,52 @@
+{
+    "ContentType": "DynamicFieldsExamples",
+    "ContentField": "GrapesJsEditor",
+    "IndexRawValue": true,
+    "Code": "<div class=\"gjs\">\r\n  <h1>Hello GrapesJS in Modal!</h1>\r\n</div>",
+    "Resources": [
+        {
+            "At": 2,
+            "Hash": "F3F7DB3184F81DBC5C8B087CC6D1F2911FAB04ED8D45638DDC0A83371B1BFF62",
+            "IsInline": true,
+            "Src": "window.FontAwesomeConfig = { autoReplaceSvg: 'nest' };",
+            "Type": 0,
+            "IsAsync": false,
+            "IsDeferred": false,
+            "ScriptType": ""
+        },
+        {
+            "At": 1,
+            "Hash": "E68EEED11CA7BE94AF8DE2F1CA864AA59DC1354DD588BCC51B9F23591ED213A3",
+            "IsInline": false,
+            "Src": "https://unpkg.com/grapesjs@0.22.12/dist/css/grapes.min.css",
+            "Type": 1
+        },
+        {
+            "At": 1,
+            "Hash": "CB66A4BDED3F8F5E720063CFE685B6E673AC0E3C654442D2388401B43B000BB6",
+            "IsInline": false,
+            "Src": "https://unpkg.com/grapesjs@0.22.12/dist/grapes.min.js",
+            "Type": 0,
+            "IsAsync": false,
+            "IsDeferred": false,
+            "ScriptType": ""
+        },
+        {
+            "At": 1,
+            "Hash": "AD8734A270D371E0FC96C01DE7C1596CB12E6C0FAC35EFA3F34764AC14180A45",
+            "IsInline": true,
+            "Src": "(function () {\r\n  document.addEventListener('DOMContentLoaded', () => {\r\n    const {\r\n        setValue, \r\n        addEventListener, \r\n        querySelector,\r\n        notify\r\n    } = window.dynamicFields.DynamicFieldsExamples_GrapesJsEditor_Value;\r\n\r\n    const container = querySelector('.gjs');   \r\n    const editor = grapesjs.init({\r\n      container: container,\r\n      height: '500px',\r\n      width: '100%',\r\n      fromElement: true,\r\n      storageManager: false,\r\n    });\r\n    editor.on('change', () => {\r\n      const html = editor.getHtml();\r\n      const css = editor.getCss();\r\n      const object = {\r\n        html,\r\n        css\r\n      }\r\n      setValue(object);\r\n    });\r\n\r\n    addEventListener('value', (object) => {\r\n      const { html, css } = object ?? {};\r\n      if (html && css) {\r\n        editor.setComponents(html);\r\n        editor.setStyle(css);\r\n      }\r\n    }, {init: true});\r\n  });\r\n})();",
+            "Type": 0,
+            "IsAsync": false,
+            "IsDeferred": false,
+            "ScriptType": ""
+        },
+        {
+            "At": 1,
+            "Hash": "E33FB641F6BC55EB12E233F134F8149D94FC6A19F9355EE0026B7599E99D213D",
+            "IsInline": true,
+            "Src": "body:not(.left-sidebar-compact) #ta-left-sidebar i {\r\n\ttop: inherit !important;\r\n}",
+            "Type": 1
+        }
+    ]
+}

@@ -1,0 +1,35 @@
+{
+    "ContentType": "DynamicFieldsExamples",
+    "ContentField": "SimpleInputForm",
+    "IndexRawValue": false,
+    "Code": "<div class=\"fields-container\">\r\n  <!-- Text Input -->\r\n  <div class=\"field-container\">\r\n    <label>Text Input</label>\r\n    <input type=\"text\" class=\"form-control\" placeholder=\"Text input\" name=\"textInput\">\r\n  </div>\r\n\r\n  <!-- Password -->\r\n  <div class=\"field-container\">\r\n    <label>Password</label>\r\n    <input type=\"password\" class=\"form-control\" placeholder=\"Password\" name=\"password\">\r\n  </div>\r\n\r\n  <!-- Email -->\r\n  <div class=\"field-container\">\r\n    <label>Email</label>\r\n    <input type=\"email\" class=\"form-control\" placeholder=\"Email\" name=\"email\">\r\n  </div>\r\n\r\n  <!-- Number -->\r\n  <div class=\"field-container\">\r\n    <label>Number</label>\r\n    <input type=\"number\" class=\"form-control\" placeholder=\"Number\" name=\"number\">\r\n  </div>\r\n\r\n  <!-- Date / Time -->\r\n  <div class=\"field-container\">\r\n    <label>Date</label>\r\n    <input type=\"date\" class=\"form-control\" name=\"date\">\r\n  </div>\r\n  <div class=\"field-container\">\r\n    <label>Time</label>\r\n    <input type=\"time\" class=\"form-control\" name=\"time\">\r\n  </div>\r\n  <div class=\"field-container\">\r\n    <label>DateTime Local</label>\r\n    <input type=\"datetime-local\" class=\"form-control\" name=\"dateTimeLocal\">\r\n  </div>\r\n\r\n  <!-- URL / Telephone / Color / Search -->\r\n  <div class=\"field-container\">\r\n    <label>URL</label>\r\n    <input type=\"url\" class=\"form-control\" placeholder=\"https://example.com\" name=\"url\">\r\n  </div>\r\n  <div class=\"field-container\">\r\n    <label>Telephone</label>\r\n    <input type=\"tel\" class=\"form-control\" placeholder=\"+1234567890\" name=\"telephone\">\r\n  </div>\r\n  <div class=\"field-container\">\r\n    <label>Color Picker</label>\r\n    <input type=\"color\" class=\"form-control form-control-color\" name=\"colorPicker\">\r\n  </div>\r\n  <div class=\"field-container\">\r\n    <label>Search</label>\r\n    <input type=\"search\" class=\"form-control\" placeholder=\"Search...\" name=\"search\">\r\n  </div>\r\n\r\n  <!-- Range -->\r\n  <div class=\"field-container\">\r\n    <label>Range</label>\r\n    <input type=\"range\" class=\"form-range\" name=\"range\">\r\n  </div>\r\n\r\n  <!-- Textarea -->\r\n  <div class=\"field-container\">\r\n    <label>Textarea</label>\r\n    <textarea class=\"form-control\" rows=\"3\" placeholder=\"Textarea\" name=\"textarea\"></textarea>\r\n  </div>\r\n\r\n  <!-- Select -->\r\n  <div class=\"field-container\">\r\n    <label>Select</label>\r\n    <select class=\"form-select\" name=\"select\">\r\n      <option selected>Choose...</option>\r\n      <option value=\"1\">Option 1</option>\r\n      <option value=\"2\">Option 2</option>\r\n    </select>\r\n  </div>\r\n\r\n  <!-- Multiple Select -->\r\n  <div class=\"field-container\">\r\n    <label>Multiple Select</label>\r\n    <select class=\"form-select\" multiple name=\"multipleSelect\">\r\n      <option value=\"1\">Option 1</option>\r\n      <option value=\"2\">Option 2</option>\r\n      <option value=\"3\">Option 3</option>\r\n    </select>\r\n  </div>\r\n\r\n  <!-- Checkbox -->\r\n  <div class=\"field-container form-check\">\r\n    <input type=\"checkbox\" class=\"form-check-input\" id=\"checkbox1\" name=\"checkbox\">\r\n    <label class=\"form-check-label\" for=\"checkbox1\">Checkbox</label>\r\n  </div>\r\n\r\n  <!-- Radio Buttons -->\r\n  <div class=\"field-container\">\r\n    <label>Radio Buttons</label>\r\n    <div class=\"form-check\">\r\n      <input type=\"radio\" class=\"form-check-input\" name=\"radioButtons\" id=\"radio1\" value=\"option1\">\r\n      <label class=\"form-check-label\" for=\"radio1\">Option 1</label>\r\n    </div>\r\n    <div class=\"form-check\">\r\n      <input type=\"radio\" class=\"form-check-input\" name=\"radioButtons\" id=\"radio2\" value=\"option2\">\r\n      <label class=\"form-check-label\" for=\"radio2\">Option 2</label>\r\n    </div>\r\n  </div>\r\n\r\n  <!-- Switch -->\r\n  <div class=\"field-container form-check form-switch\">\r\n    <input class=\"form-check-input\" type=\"checkbox\" id=\"switch1\" name=\"switchToggle\">\r\n    <label class=\"form-check-label\" for=\"switch1\">Switch / Toggle</label>\r\n  </div>\r\n\r\n  <!-- Input Group Example -->\r\n  <div class=\"field-container\">\r\n    <label>Input Group</label>\r\n    <div class=\"input-group\">\r\n      <span class=\"input-group-text\">@</span>\r\n      <input type=\"text\" class=\"form-control\" placeholder=\"Username\" name=\"inputGroup\">\r\n    </div>\r\n  </div>\r\n\r\n  <!-- Floating Label Example -->\r\n  <div class=\"field-container form-floating\">\r\n    <input type=\"email\" class=\"form-control\" id=\"floatingEmail\" placeholder=\"name@example.com\" name=\"floatingEmail\">\r\n    <label for=\"floatingEmail\">Floating Label</label>\r\n  </div>\r\n</div>\r\n",
+    "Resources": [
+        {
+            "At": 2,
+            "Hash": "1147BF459225C7BD5452BC5E9AF049C83298BF2E1FE119926B4599F9C938C8BE",
+            "IsInline": true,
+            "Src": ".field-container label { font-weight: bold; display: block; margin-bottom: 0.5rem; }\r\n.field-container { margin-bottom: 1rem; }",
+            "Type": 1
+        },
+        {
+            "At": 1,
+            "Hash": "EAF832F1B2439EA7B21FAE9FAF50CEB63C3994610F534C742C5B71C88767182C",
+            "IsInline": false,
+            "Src": "https://lampersky.github.io/DynamicFields/js/simple-input-form.min.js",
+            "Type": 0,
+            "IsAsync": false,
+            "IsDeferred": false,
+            "ScriptType": ""
+        },
+        {
+            "At": 1,
+            "Hash": "C99E05B16D6B474AC36241C2D0009E9FCAEB1619A3DDD07087616FC357371A16",
+            "IsInline": true,
+            "Src": "initSimpleInputForm(window.dynamicFields.DynamicFieldsExamples_SimpleInputForm_Value)",
+            "Type": 0,
+            "IsAsync": false,
+            "IsDeferred": false,
+            "ScriptType": ""
+        }
+    ]
+}

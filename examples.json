@@ -1,0 +1,82 @@
+[
+  {
+    "name": "BootstrapFields",
+    "url": "https://lampersky.github.io/DynamicFields/examples/bootstrapFields.json",
+    "version": "1.0"
+  },
+  {
+    "name": "CkEditor",
+    "url": "https://lampersky.github.io/DynamicFields/examples/ckEditor.json",
+    "version": "1.0"
+  },
+  {
+    "name": "ColorisJs",
+    "url": "https://lampersky.github.io/DynamicFields/examples/colorisJs.json",
+    "version": "1.0"
+  },
+  {
+    "name": "ColorPicker",
+    "url": "https://lampersky.github.io/DynamicFields/examples/colorPicker.json",
+    "version": "1.0"
+  },
+  {
+    "name": "FullCalendar",
+    "url": "https://lampersky.github.io/DynamicFields/examples/fullCalendar.json",
+    "version": "1.0"
+  },
+  {
+    "name": "GeoCoordinates",
+    "url": "https://lampersky.github.io/DynamicFields/examples/geoCoordinates.json",
+    "version": "1.0"
+  },
+  {
+    "name": "GrapesJs",
+    "url": "https://lampersky.github.io/DynamicFields/examples/grapesjs.json",
+    "version": "1.0"
+  },
+  {
+    "name": "ImageCrop",
+    "url": "https://lampersky.github.io/DynamicFields/examples/imageCrop.json",
+    "version": "1.0"
+  },
+  {
+    "name": "JsonEditor",
+    "url": "https://lampersky.github.io/DynamicFields/examples/jsonEditor.json",
+    "version": "1.0"
+  },
+  {
+    "name": "JSpreadsheet",
+    "url": "https://lampersky.github.io/DynamicFields/examples/jspreadsheet.json",
+    "version": "1.0"
+  },
+  {
+    "name": "Leaflet",
+    "url": "https://lampersky.github.io/DynamicFields/examples/leaflet.json",
+    "version": "1.0"
+  },
+  {
+    "name": "ReactComponent",
+    "url": "https://lampersky.github.io/DynamicFields/examples/reactComponent.json",
+    "version": "1.0"
+  },
+  {
+    "name": "SelfContainedReactComponent",
+    "url": "https://lampersky.github.io/DynamicFields/examples/selfContainedReactComponent.json",
+    "version": "1.0"
+  },
+  {
+    "name": "SimpleImageGallery",
+    "url": "https://lampersky.github.io/DynamicFields/examples/simpleImageGallery.json",
+    "version": "1.0"
+  },
+  {
+    "name": "SimpleInputForm",
+    "url": "https://lampersky.github.io/DynamicFields/examples/simpleInputForm.json",
+    "version": "1.0"
+  },
+  {
+    "name": "SimplePaint",
+    "url": "https://lampersky.github.io/DynamicFields/examples/simplePaint.json",
+    "version": "1.0"
+  }
+]

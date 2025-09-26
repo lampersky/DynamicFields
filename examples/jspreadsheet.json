@@ -1,0 +1,59 @@
+{
+    "ContentType": "DynamicFieldsExamples",
+    "ContentField": "Jspreadsheet",
+    "IndexRawValue": true,
+    "Code": "<div class=\"spreadsheet\"></div>",
+    "Resources": [
+        {
+            "At": 1,
+            "Hash": "00BB92DD3BA678F43554CB43D457AC07394B988A0D25D74CEFF388C6F73EFC10",
+            "IsInline": false,
+            "Src": "https://bossanova.uk/jspreadsheet/v4/jexcel.js",
+            "Type": 0,
+            "IsAsync": false,
+            "IsDeferred": false,
+            "ScriptType": ""
+        },
+        {
+            "At": 1,
+            "Hash": "8DD3AD701DC44C138036806E49A815863270902B93B9841DA9738291A730D744",
+            "IsInline": false,
+            "Src": "https://jsuites.net/v4/jsuites.js",
+            "Type": 0,
+            "IsAsync": false,
+            "IsDeferred": false,
+            "ScriptType": ""
+        },
+        {
+            "At": 1,
+            "Hash": "7196807E4423FDC06FFE2557E959314190EB476918CDF1C321CA8799E905A794",
+            "IsInline": false,
+            "Src": "https://jsuites.net/v4/jsuites.css",
+            "Type": 1
+        },
+        {
+            "At": 1,
+            "Hash": "DA44DFFA91B62490B88E9E18C40032660AF3B8F82BCE59E23BC5AEA18984FA96",
+            "IsInline": false,
+            "Src": "https://bossanova.uk/jspreadsheet/v4/jexcel.css",
+            "Type": 1
+        },
+        {
+            "At": 1,
+            "Hash": "A0042229864F96E760D4531C43EDEF0CB8DDEACF5C5FCABA69D09A3547756DCE",
+            "IsInline": true,
+            "Src": "(function () {\r\n  document.addEventListener('DOMContentLoaded', () => {\r\n    /* available functions */\r\n    const {\r\n        getValue, \r\n        setValue, \r\n        addEventListener, \r\n        querySelector, \r\n        closest,\r\n        getPathBase,\r\n        getLangDir\r\n    } = window.dynamicFields.DynamicFieldsExamples_Jspreadsheet_Value;\r\n\r\n    var data = [\r\n        ['Jazz', 'Honda', '2019-02-12', '', true, '$ 2.000,00', '#777700'],\r\n        ['Civic', 'Honda', '2018-07-11', '', true, '$ 4.000,01', '#007777'],\r\n    ];\r\n\r\n    var spreadsheet = jspreadsheet(querySelector('.spreadsheet'), {\r\n      data:data,\r\n      columns: [\r\n          { type: 'text', title:'Car', width:120 },\r\n          { type: 'dropdown', title:'Make', width:200, source:[ \"Alfa Romeo\", \"Audi\", \"Bmw\" ] },\r\n          { type: 'calendar', title:'Available', width:200 },\r\n          { type: 'image', title:'Photo', width:120 },\r\n          { type: 'checkbox', title:'Stock', width:80 },\r\n          { type: 'numeric', title:'Price', width:100, mask:'$ #.##,00', decimal:',' },\r\n          { type: 'color', width:100, render:'square', }\r\n      ],\r\n      onchange: function(instance, cell, x, y, value) {\r\n        console.log(\"value changed\");\r\n\t\tsetValue({ data : spreadsheet.getData()});\t\r\n      }\r\n  });\r\n    \r\n    addEventListener('value', (object) => {\r\n      if (object?.data) {\r\n        spreadsheet.setData(object?.data);\r\n      }\r\n    }, {init: true});\r\n  });\r\n})();",
+            "Type": 0,
+            "IsAsync": false,
+            "IsDeferred": false,
+            "ScriptType": ""
+        },
+        {
+            "At": 1,
+            "Hash": "FD4D8DB3D85D464AD55BBA642739E5BFFE948DCACEE0B787B3FFEA8DC1266A8F",
+            "IsInline": true,
+            "Src": ".jexcel .editor .jupload {\r\n  z-index: 1000;\r\n}",
+            "Type": 1
+        }
+    ]
+}

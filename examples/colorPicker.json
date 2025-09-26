@@ -1,0 +1,28 @@
+{
+    "ContentType": "DynamicFieldsExamples",
+    "ContentField": "ColorPicker",
+    "IndexRawValue": true,
+    "Code": "<hex-color-picker></hex-color-picker>",
+    "Resources": [
+        {
+            "At": 1,
+            "Hash": "EB5A505505F8BF26387F9FCD02BDE31A5E3F2A15FC4B05E1DF4DCA97A5D9B15B",
+            "IsInline": false,
+            "Src": "https://unpkg.com/vanilla-colorful?module",
+            "Type": 0,
+            "IsAsync": false,
+            "IsDeferred": false,
+            "ScriptType": "module"
+        },
+        {
+            "At": 1,
+            "Hash": "0D59E716BCE6B9590B125624393B570C1AA1A81895F1668DF5F604F99B815942",
+            "IsInline": true,
+            "Src": "(function () {\r\n    const {\r\n        getValue, \r\n        setValue, \r\n        addEventListener, \r\n        querySelector\r\n    } = window.dynamicFields.DynamicFieldsExamples_ColorPicker_Value;\r\n    \r\n    const picker = querySelector('hex-color-picker');\r\n    \r\n    picker.addEventListener('color-changed', (event) => {\r\n      const newColor = event.detail.value;\r\n      const object = {\r\n        color: newColor\r\n      };\r\n      setValue(object);\r\n    });\r\n    \r\n    addEventListener('value', (object) => {\r\n        const color = object?.color;\r\n        picker.color = color;\r\n        picker.setAttribute('color', color);\r\n    }, {init: true});\r\n})();",
+            "Type": 0,
+            "IsAsync": false,
+            "IsDeferred": false,
+            "ScriptType": ""
+        }
+    ]
+}

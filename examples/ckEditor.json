@@ -1,0 +1,28 @@
+{
+    "ContentType": "DynamicFieldsExamples",
+    "ContentField": "CkEditor",
+    "IndexRawValue": true,
+    "Code": "<div class=\"editor\">\r\n    <p>This is the editor content.</p>\r\n</div>",
+    "Resources": [
+        {
+            "At": 1,
+            "Hash": "02439DB5045AE7D91DF2173EC4CC3B1BAD5D53E86412D508870A1782F6D980E7",
+            "IsInline": false,
+            "Src": "https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js",
+            "Type": 0,
+            "IsAsync": false,
+            "IsDeferred": false,
+            "ScriptType": ""
+        },
+        {
+            "At": 1,
+            "Hash": "FC27474663D343270EAD5CA326943A99D8522FA93AF855E26FDEB9315360925B",
+            "IsInline": true,
+            "Src": "(function () {\r\n  document.addEventListener('DOMContentLoaded', () => {\r\n    const {\r\n        getValue, \r\n        setValue, \r\n        addEventListener, \r\n        querySelector\r\n    } = window.dynamicFields.DynamicFieldsExamples_CkEditor_Value;\r\n\r\n    const editorElement = querySelector('.editor');\r\n    const ckEditor = CKEDITOR.replace(editorElement);\r\n    ckEditor.on('change', function () {\r\n      let content = CKEDITOR.instances.editor.getData();\r\n      console.log(\"Editor changed\");\r\n      setValue({ content: content })\r\n    });\r\n    \r\n    addEventListener('value', (object) => {\r\n      if (object?.content) {\r\n        ckEditor.setData(object?.content);\r\n      }\r\n    }, {init: true});\r\n  });\r\n})();",
+            "Type": 0,
+            "IsAsync": false,
+            "IsDeferred": false,
+            "ScriptType": ""
+        }
+    ]
+}

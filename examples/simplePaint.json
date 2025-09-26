@@ -1,0 +1,38 @@
+{
+    "ContentType": "DynamicFieldsExamples",
+    "ContentField": "SimplePaint",
+    "IndexRawValue": true,
+    "Code": "<paint-component></paint-component>",
+    "Resources": [
+        {
+            "At": 2,
+            "Hash": "0DB9AD438BB7B4FC469D5AEB8D66D01FDF729960D9EBECE02CC1484411746C6C",
+            "IsInline": false,
+            "Src": "https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.0/fabric.min.js",
+            "Type": 0,
+            "IsAsync": false,
+            "IsDeferred": false,
+            "ScriptType": ""
+        },
+        {
+            "At": 1,
+            "Hash": "45AEBC81242A5826B9F0650E054091AA60E468F76EA513174DD6A2F3545B81E4",
+            "IsInline": false,
+            "Src": "https://lampersky.github.io/DynamicFields/js/paint-component.min.js",
+            "Type": 0,
+            "IsAsync": false,
+            "IsDeferred": false,
+            "ScriptType": ""
+        },
+        {
+            "At": 1,
+            "Hash": "532723E6FBA0A9ED2A4074B03D432D4EADD575C35E31539DD698DF9FAF765AD9",
+            "IsInline": true,
+            "Src": "(function () {\r\n    const {\r\n        getValue, \r\n        setValue, \r\n        addEventListener, \r\n        querySelector\r\n    } = window.dynamicFields.DynamicFieldsExamples_SimplePaint_Value;\r\n\r\n    const paint = querySelector('paint-component');\r\n    paint.onChange = function(object) {\r\n        setValue(object);\r\n    };\r\n\r\n    addEventListener('value', (object) => {\r\n        if (object?.json) {\r\n            paint.loadFromJson(object?.json);\r\n        }\r\n    }, {init: true});\r\n})();",
+            "Type": 0,
+            "IsAsync": false,
+            "IsDeferred": false,
+            "ScriptType": ""
+        }
+    ]
+}

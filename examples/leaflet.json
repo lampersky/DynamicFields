@@ -1,0 +1,42 @@
+{
+    "ContentType": "DynamicFieldsExamples",
+    "ContentField": "Leafletjs",
+    "IndexRawValue": false,
+    "Code": "<div class=\"map\"></div>",
+    "Resources": [
+        {
+            "At": 2,
+            "Hash": "34B3C0E131EBA2D5AC12AF029F6A724DE6183C3089D7AF6396EFE69590079EDA",
+            "IsInline": false,
+            "Src": "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css",
+            "Type": 1
+        },
+        {
+            "At": 2,
+            "Hash": "5D00F470F48714D1000BDF932AE38681BD7C383BA9A3E86C2838741D49100F64",
+            "IsInline": false,
+            "Src": "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js",
+            "Type": 0,
+            "IsAsync": false,
+            "IsDeferred": false,
+            "ScriptType": ""
+        },
+        {
+            "At": 1,
+            "Hash": "D9D1EC6DFD6D169F21DF8DF4FC43544C3FA541CCAD806AB002A743B2589D85E1",
+            "IsInline": true,
+            "Src": "(function () {\r\n    const {\r\n        getValue, \r\n        setValue, \r\n        addEventListener, \r\n        querySelector\r\n    } = window.dynamicFields.DynamicFieldsExamples_Leafletjs_Value;\r\n    \r\n    const mapContainer = querySelector('.map');\r\n    const map = L.map(mapContainer).setView([51.505, -0.09], 13);\r\n    const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {\r\n        maxZoom: 19,\r\n        attribution: '&copy; <a href=\"http://www.openstreetmap.org/copyright\">OpenStreetMap</a>'\r\n    }).addTo(map);\r\n    const marker = L.marker([51.505, -0.09], { draggable: true }).addTo(map);\r\n    marker.on('dragend', function (e) {\r\n        //var savedBounds = map.getBounds();\r\n        const position = marker.getLatLng();\r\n        const savedCenter = map.getCenter();\r\n        const savedZoom = map.getZoom();\r\n        const object = {\r\n            //bounds: savedBounds,\r\n            position: position,\r\n            center: savedCenter,\r\n            zoom: savedZoom,\r\n        };\r\n        setValue(object);\r\n    });\r\n    addEventListener('value', (object) => {\r\n        if (object?.position && object?.center && object.zoom) {\r\n            const position = object.position;\r\n            const savedCenter = object.center;\r\n            const savedZoom = object.zoom;\r\n            map.setView(savedCenter, savedZoom);\r\n            marker.setLatLng(position );\r\n            //const bounds = object.bounds;\r\n            //map.fitBounds(bounds);\r\n        }\r\n    }, {init: true});\r\n})();",
+            "Type": 0,
+            "IsAsync": false,
+            "IsDeferred": false,
+            "ScriptType": ""
+        },
+        {
+            "At": 1,
+            "Hash": "F762A8E8B8A238D526FFE9103B9E3B732C87C5F98A2344A4E09219641CB7A4EF",
+            "IsInline": true,
+            "Src": "#DynamicFieldsExamples_Leafletjs_Value .map { height: 360px; }",
+            "Type": 1
+        }
+    ]
+}

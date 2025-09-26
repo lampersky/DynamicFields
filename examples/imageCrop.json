@@ -1,0 +1,28 @@
+{
+    "ContentType": "DynamicFieldsExamples",
+    "ContentField": "ImageCrop",
+    "IndexRawValue": false,
+    "Code": "<image-upload-component>\r\n          <style>\r\n            image-crop {\r\n              display: block;\r\n              max-width: 400px;\r\n              max-height: 400px;\r\n              margin-bottom: 10px;\r\n            }\r\n            input[type=\"file\"] {\r\n              margin-bottom: 10px;\r\n            }\r\n          </style>\r\n          <image-crop tabindex=\"0\"><div data-loading-slot class=\"loading\">Loading...</div></image-crop>\r\n</image-upload-component>",
+    "Resources": [
+        {
+            "At": 1,
+            "Hash": "7D732CDDBA681FFA97263D8DDE7D5100A5BE1263FE40EE37A4A93C52652CC93B",
+            "IsInline": false,
+            "Src": "https://unpkg.com/@github/image-crop-element@latest/dist/index.js",
+            "Type": 0,
+            "IsAsync": false,
+            "IsDeferred": false,
+            "ScriptType": "module"
+        },
+        {
+            "At": 1,
+            "Hash": "E73523EBB30D28B0E4F5F437ACEE47EA357DD3D4A3369C2B7652A0DCD86B9323",
+            "IsInline": false,
+            "Src": "https://lampersky.github.io/DynamicFields/js/image-upload-component.min.js",
+            "Type": 0,
+            "IsAsync": false,
+            "IsDeferred": false,
+            "ScriptType": ""
+        }
+    ]
+}
