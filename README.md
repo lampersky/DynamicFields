@@ -1,4 +1,6 @@
-# DynamicField Module for Orchard Core  
+# DynamicField Module for Orchard Core
+
+[![NuGet](https://img.shields.io/nuget/v/Lampersky.DynamicFields.svg)](https://www.nuget.org/packages/Lampersky.DynamicFields)
 
 **DynamicField** is a custom Orchard Core module that introduces a flexible new type of field.  
 Unlike standard fields, it allows you to define rich, fully interactive editors using vanilla JavaScript - without writing or redeploying backend code.  
