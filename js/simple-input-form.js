@@ -232,12 +232,12 @@ function initSimpleInputForm(dynamicField, treatDotInNameAsNestedObject = false)
                 if (!dynamicField.initializedElements.has(element)) {
                     if (element.inputTypeEvent) {
                         element.addEventListener('input', (event) => {
-                            console.log('Input changed:', event.target.value);
+                            //console.log('Input changed:', event.target.value);
                             setValue(getDict(dynamicField.fields, treatDotInNameAsNestedObject));
                         });
                     } else if (element.changeTypeEvent) {
                         element.addEventListener('change', (event) => {
-                            console.log('Changed field:', event.target.tagName, type, event.target.value);
+                            //console.log('Changed field:', event.target.tagName, event.target.value);
                             setValue(getDict(dynamicField.fields, treatDotInNameAsNestedObject));
                         });
                     }

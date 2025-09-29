@@ -4,4 +4,6 @@ src/Lampersky.Example.Web/.vs/
 src/Lampersky.Example.Web/App_Data/
 *.user
 src/Lampersky.Example.Web/obj/
+src/Lampersky.Example.Web/bin/
 src/Lampersky.DynamicFields/obj/
+src/Lampersky.DynamicFields/bin/
