@@ -33,13 +33,18 @@ To showcase the flexibility of DynamicField, several ready-to-use integrations a
 - **Image gallery** - powered by [Picsum Photos](http://picsum.photos) free image service,
 - **[Image crop & upload](https://github.com/github/image-crop-element)** - simple image editing,
 - **Geo-coordinates field** - lightweight alternative to OrchardCore Spatial,
-- **[JSpreadsheet](https://jspreadsheet.com)** – Excel-like data grid component,
-- **[FullCalendar](https://fullcalendar.io)** – interactive calendar,
-- **[CKEditor](https://ckeditor.com)** – powerful rich text editor, 
-- **SimpleInputForm** – build simple forms with just JS + HTML.
+- **[JSpreadsheet](https://jspreadsheet.com)** - Excel-like data grid component,
+- **[FullCalendar](https://fullcalendar.io)** - interactive calendar,
+- **[CKEditor](https://ckeditor.com)** - powerful rich text editor, 
+- **SimpleInputForm** - build simple forms with just JS + HTML.
 
 ## Use Cases  
 - Rapid prototyping of custom field types,
 - Integrating third-party JavaScript components into Orchard Core,
 - Enhancing the content editing experience without backend development,
 - Lowering the barrier for non-OrchardCore experts to create new editors.
+
+## Docs
+
+- **[My first DynamicField](docs/basic-text-field.md)** - A simple example showing how to create a basic text field and retrieve its value using DynamicFields,
+- **[Payment form](docs/advanced-form.md)** - A more advanced example demonstrating a credit card payment form with nested objects, array support, and automatic mapping of form values.
