@@ -1,8 +1,8 @@
-# DynamicField Module for Orchard Core
+# DynamicFields Module for Orchard Core
 
 [![NuGet](https://img.shields.io/nuget/v/Lampersky.DynamicFields.svg)](https://www.nuget.org/packages/Lampersky.DynamicFields)
 
-**DynamicField** is a custom Orchard Core module that introduces a flexible new type of field.  
+**DynamicFields** is a custom Orchard Core module that introduces a flexible new type of field.  
 Unlike standard fields, it allows you to define rich, fully interactive editors using vanilla JavaScript - without writing or redeploying backend code.  
 You can easily wrap existing JavaScript components into a **DynamicField** and use them directly within your content types.  
 
@@ -14,16 +14,16 @@ You can easily wrap existing JavaScript components into a **DynamicField** and u
   Bring any JavaScript-based UI component into Orchard Core as a reusable field.  
 
 - **GraphQL Support**  
-  Query DynamicField values seamlessly via Orchard Core’s GraphQL endpoints.  
+  Query DynamicFields values seamlessly via Orchard Coreâ€™s GraphQL endpoints.  
 
 - **SQL Indexing**  
   Field values are fully indexable in SQL, enabling efficient queries and filtering.  
 
 - **Recipe with Examples**  
-  Shipped with a ready-to-use Orchard Core recipe that installs various DynamicField examples to explore out-of-the-box.  
+  Shipped with a ready-to-use Orchard Core recipe that installs various DynamicFields examples to explore out-of-the-box.  
 
 ## Included Examples  
-To showcase the flexibility of DynamicField, several ready-to-use integrations are included:  
+To showcase the flexibility of DynamicFields, several ready-to-use integrations are included:  
 
 - **[GrapesJS editor](https://grapesjs.com)** - drag & drop web page builder,
 - **[LeafletJS map](https://leafletjs.com)** - interactive maps,
