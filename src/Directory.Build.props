@@ -2,5 +2,6 @@
   <PropertyGroup>
     <OrchardCoreVersion>2.2.0</OrchardCoreVersion>
     <TargetFramework>net8.0</TargetFramework>
+	<DynamicFieldsVersion>1.0.0</DynamicFieldsVersion>
   </PropertyGroup>
 </Project>

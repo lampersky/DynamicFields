@@ -48,6 +48,12 @@ public static class ExpandoObjectExtensions
     public static ExpandoObject ToExpando(this object anonymousObject)
     {
         var expando = new ExpandoObject();
+
+        if (anonymousObject is null)
+        {
+            return expando;
+        }
+
         var dict = (IDictionary<string, object>)expando;
 
         foreach (var prop in anonymousObject.GetType().GetProperties())

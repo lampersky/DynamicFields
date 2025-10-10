@@ -19,6 +19,7 @@ public class AdminController(IUpdateModelAccessor UpdateModelAccessor) : Control
 
         return View(new DynamicFieldPreviewViewModel {
             Settings = settings,
+            ContentType = contentType,
             ContentField = contentField,
             ContentPart = contentType,
         });

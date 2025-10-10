@@ -9,6 +9,8 @@ using OrchardCore.DisplayManagement.Layout;
 using OrchardCore.DisplayManagement.ModelBinding;
 using OrchardCore.DisplayManagement.Views;
 using OrchardCore.DisplayManagement.Zones;
+using OrchardCore.DynamicFields.Extensions;
+using OrchardCore.DynamicFields.Fields;
 using OrchardCore.Modules;
 
 namespace OrchardCore.DynamicFields.Services;
@@ -19,11 +21,26 @@ public class PreviewDynamicFieldService(IShapeFactory shapeFactory,
     IEnumerable<IContentDisplayDriver> contentDisplayDrivers,
     IUpdateModelAccessor updateModelAccessor,
     ILayoutAccessor layoutAccessor,
-    ILogger<PreviewDynamicFieldService> logger)
+    ILogger<PreviewDynamicFieldService> logger,
+    IContentManager contentManager)
 {
-    public async Task<IShape> BuildFieldEditorAsync(ContentTypeDefinition contentTypeDefinition, bool skip = true)
+    public async Task<IShape> BuildFieldEditorAsync(ContentTypeDefinition contentTypeDefinition, string originalContentType, object initialValue = null, bool skip = true)
     {
-        var contentItem = new ContentItem();
+        var contentItem = await contentManager.NewAsync(originalContentType);
+
+        if (initialValue != null)
+        {
+            contentItem.Merge(new Dictionary<string, object>
+            {
+                [originalContentType] = new
+                {
+                    SimpleTextField = new DynamicField()
+                    {
+                        Value = initialValue.ToExpando()
+                    }
+                }
+            });
+        }
 
         var itemShape = await shapeFactory.CreateAsync("Content_Edit", () => ValueTask.FromResult<IShape>(new ZoneHolding(() => shapeFactory.CreateAsync("ContentZone"))));
         itemShape.Properties["ContentItem"] = contentItem;

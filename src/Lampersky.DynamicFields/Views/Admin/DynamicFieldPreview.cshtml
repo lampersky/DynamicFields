@@ -33,7 +33,7 @@
         Model.ContentField,
         Model.Settings);
 
-    var shape = await PreviewDynamicFieldService.BuildFieldEditorAsync(contentTypeDefinition);
+    var shape = await PreviewDynamicFieldService.BuildFieldEditorAsync(contentTypeDefinition, Model.ContentType);
 }
 
 @await DisplayAsync(shape)

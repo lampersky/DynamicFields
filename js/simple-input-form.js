@@ -6,7 +6,7 @@
     if (currentScript) {
         const url = new URL(currentScript.src);
         const dynamicFieldPath = url.searchParams.get('dynamicField');
-        const isNested = ['1', 'yes', 'true'].includes(url.searchParams.get('nested')?.toLowerCase());;
+        const isNested = ['1', 'yes', 'true'].includes(url.searchParams.get('nested')?.toLowerCase());
         if (dynamicFieldPath) {
             const dynamicField = getValueFromPath(dynamicFieldPath);
             initSimpleInputForm(dynamicField, isNested);

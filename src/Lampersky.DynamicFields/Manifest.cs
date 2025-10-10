@@ -3,8 +3,8 @@ using OrchardCore.Modules.Manifest;
 [assembly: Module(
     Name = "Dynamic Fields",
     Author = "Lampersky",
-    Website = ManifestConstants.OrchardCoreWebsite,
-    Version = ManifestConstants.OrchardCoreVersion,
+    Website = "https://github.com/lampersky/DynamicFields",
+    Version = "1.0.0",
     Category = "Content Management"
 )]
 
