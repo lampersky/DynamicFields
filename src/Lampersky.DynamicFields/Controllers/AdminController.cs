@@ -1,3 +1,4 @@
+using Lampersky.DynamicFields.Filters;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OrchardCore.DisplayManagement.ModelBinding;
@@ -10,6 +11,7 @@ namespace OrchardCore.DynamicFields.Controllers;
 public class AdminController(IUpdateModelAccessor UpdateModelAccessor) : Controller
 {
     [HttpPost]
+    [HeadScriptInjectorFilter("/Lampersky.DynamicFields/Scripts/preview-errors-handler.js")]
     public async Task<IActionResult> DynamicFieldPreviewAsync(string contentType, string contentField)
     {
         var model = new EditDynamicFieldSettingsViewModel();

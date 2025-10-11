@@ -183,37 +183,6 @@ function initFakeConsole() {
         log(group, msg);
     };
 
-    const iframeWindow = iframe.contentWindow;
-    iframe.addEventListener("error", (e) => {
-        log('critical', `Iframe load error: ${e.message || e.target.src || 'Unknown syntax error'}`);
-    });
-    iframe.addEventListener("load", () => {
-        ["log", "warn", "error"].forEach(method => {
-            const original = iframeWindow.console[method];
-            iframeWindow.console[method] = function (...args) {
-                const msg = args.map(a =>
-                    (typeof a === "object" ? JSON.stringify(a) : a)
-                ).join(" ");
-                log(method, `${msg}`);
-                original.apply(iframeWindow.console, args);
-            };
-        });
-
-        iframeWindow.addEventListener("error", (e) => {
-            var msg = "";
-            if (e.target && (e.target.src || e.target.href)) {
-                msg = `Resource failed to load: ${e.target.src || e.target.href}`;
-            } else {
-                msg = `JS Error: ${e.message} at ${e.filename}:${e.lineno}:${e.colno}`;
-            }
-
-            log('critical', `${msg}`);
-        }, true);
-
-        iframeWindow.addEventListener("unhandledrejection", (e) => {
-            log('critical', `Unhandled Promise Rejection: ${e.reason}`);
-        });
-    });
     window.addEventListener("message", (e) => {
         if (e.source === iframe.contentWindow) {
             const { error } = e.data;
