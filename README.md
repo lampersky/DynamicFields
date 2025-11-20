@@ -36,7 +36,8 @@ To showcase the flexibility of DynamicFields, several ready-to-use integrations 
 - **[JSpreadsheet](https://jspreadsheet.com)** - Excel-like data grid component,
 - **[FullCalendar](https://fullcalendar.io)** - interactive calendar,
 - **[CKEditor](https://ckeditor.com)** - powerful rich text editor, 
-- **SimpleInputForm** - build simple forms with just JS + HTML.
+- **SimpleInputForm** - build simple forms with just JS + HTML,
+- **[Quill](https://github.com/slab/quill)** - Quill is a modern WYSIWYG editor built for compatibility and extensibility.
 
 ## Use Cases  
 - Rapid prototyping of custom field types,
