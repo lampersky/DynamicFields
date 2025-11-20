@@ -78,5 +78,10 @@
     "name": "SimplePaint",
     "url": "https://lampersky.github.io/DynamicFields/examples/simplePaint.json",
     "version": "1.0"
+  },
+  {
+    "name": "Quill",
+    "url": "https://lampersky.github.io/DynamicFields/examples/quill.json",
+    "version": "1.0"
   }
 ]

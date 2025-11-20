@@ -1,0 +1,35 @@
+{
+  "ContentType": "DynamicFieldsExamples",
+  "ContentField": "Quill",
+  "IndexRawValue": true,
+  "Code": "\u003Cdiv class=\u0022editor\u0022\u003E\u003C/div\u003E",
+  "Resources": [
+  {
+    "At": 2,
+    "Hash": "771F872D5A5CEF21EA7496B5BB9612B031ED492C7889AB6990592E91C03991BE",
+    "IsInline": false,
+    "Src": "https://cdn.jsdelivr.net/npm/quill@2/dist/quill.snow.css",
+    "Type": 1
+  },
+  {
+    "At": 1,
+    "Hash": "1845B3688FA11016BA204C3DBFDA7371786F2B7FAA6913BA47962549B5C3056A",
+    "IsInline": false,
+    "Src": "https://cdn.jsdelivr.net/npm/quill@2/dist/quill.js",
+    "Type": 0,
+    "IsAsync": false,
+    "IsDeferred": false,
+    "ScriptType": ""
+  },
+  {
+    "At": 1,
+    "Hash": "FD7FF12774398A736947504F0AB03502235FB15A1FD89080B7493251F3FCB8CA",
+    "IsInline": true,
+    "Src": "(function () {\r\n  document.addEventListener(\u0027DOMContentLoaded\u0027, () =\u003E {\r\n    const { setValue, addEventListener, querySelector } = window.dynamicFields.DynamicFieldsExamples_Quill_Value;\r\n    const element = querySelector(\u0027.editor\u0027);\r\n    const quill = new Quill(element, { theme: \u0022snow\u0022 });\r\n    quill.on(\u0027text-change\u0027, (delta, oldDelta, source) =\u003E {\r\n      const fullDelta = quill.getContents();\r\n      setValue({ \u0027text\u0027: quill.getText(), \u0027delta\u0027: fullDelta });\r\n    });\r\n    addEventListener(\u0027value\u0027, (object) =\u003E {\r\n      quill.setContents(object?.delta ?? {});\r\n    }, {init: true});\r\n  });\r\n})();",
+    "Type": 0,
+    "IsAsync": false,
+    "IsDeferred": false,
+    "ScriptType": ""
+  }
+  ]
+}
